@@ -277,12 +277,12 @@ async function main() {
     console.log(`Created user with id: ${yeardata.id}`);
   }
 
-  // for (const month of monthData) {
-  //   const monthdata = await prisma.month.create({
-  //     data: month,
-  //   });
-  //   console.log(`Created user with id: ${monthdata.id}`);
-  // }
+  for (const month of monthData) {
+    const monthdata = await prisma.month.create({
+      data: month,
+    });
+    console.log(`Created user with id: ${monthdata.id}`);
+  }
 
   console.log(`Seeding finished.`);
 }

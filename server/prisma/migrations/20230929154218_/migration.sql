@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `SkillLevel` ADD COLUMN `levelper` INTEGER NOT NULL DEFAULT 50;
