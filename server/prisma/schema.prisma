@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-1.1.x", "linux-arm64-openssl-1.1.x", "linux-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int          @id @default(autoincrement())
+  name         String
+  introduction String?      @db.Text
+  hobby        String?      @db.Text
+  email        String       @unique
+  password     String       @db.Text
+  uid          String       @unique
+  skill        Skill[]
+  experience   Experience[]
+  portfolio    Portfolio[]
+  sns          SNS[]
+  image        UserImage?
+}
+
+model Skill {
+  id           Int        @id @unique @default(autoincrement())
+  name         String?
+  description  String?    @db.Text
+  user         User       @relation(fields: [userID], references: [id])
+  userID       Int
+  skilllevel   SkillLevel @relation(fields: [skilllevelID], references: [id])
+  skilllevelID Int
+}
+
+model SkillLevel {
+  id           Int     @id @unique @default(autoincrement())
+  level        String
+  levelper     Int
+  levelperleft Int
+  Skill        Skill[]
+}
+
+model Experience {
+  id                    Int                @id @unique @default(autoincrement())
+  name                  String?
+  description           String?            @db.Text
+  company               String?
+  user                  User               @relation(fields: [userID], references: [id])
+  userID                Int
+  experiencecategory    ExperienceCategory @relation(fields: [experiencecategoryID], references: [id])
+  experiencecategoryID  Int
+  experienceStartYear   Year               @relation("startYear", fields: [startyearID], references: [id])
+  startyearID             Int
+  experienceFinishYear  Year               @relation("finishYear", fields: [finishyearID], references: [id])
+  finishyearID            Int
+  experienceStartMonth  Month              @relation("startMonth", fields: [startmonthID], references: [id])
+  startmonthID            Int
+  experienceFinishMonth Month              @relation("finishMonth", fields: [finishmonthID], references: [id])
+  finishmonthID           Int
+}
+
+model ExperienceCategory {
+  id         Int          @id @unique @default(autoincrement())
+  name       String?
+  Experience Experience[]
+}
+
+model Year {
+  id                    Int          @id @unique @default(autoincrement())
+  year                  String?      @unique
+  experiencesStartYear  Experience[] @relation("startYear")
+  experiencesFinishYear Experience[] @relation("finishYear")
+}
+
+model Month {
+  id                     Int          @id @unique @default(autoincrement())
+  month                  String?      @unique
+  experiencesStartMonth  Experience[] @relation("startMonth")
+  experiencesFinishMonth Experience[] @relation("finishMonth")
+}
+
+model Portfolio {
+  id          Int             @id @unique @default(autoincrement())
+  name        String?
+  description String?         @db.Text
+  url         String?         @db.Text
+  user        User            @relation(fields: [userID], references: [id])
+  userID      Int
+  image       PortfolioImage?
+}
+
+model SNS {
+  id          Int       @id @unique @default(autoincrement())
+  url         String?   @db.Text
+  user        User      @relation(fields: [userID], references: [id])
+  userID      Int
+  typeofSNS   TypeofSNS @relation(fields: [typeofSNSID], references: [id])
+  typeofSNSID Int
+}
+
+model TypeofSNS {
+  id        Int    @id @unique @default(autoincrement())
+  typeofSNS String
+  SNS       SNS[]
+}
+
+model UserImage {
+  id     Int     @id @unique @default(autoincrement())
+  name   String?
+  url    String? @db.Text
+  user   User    @relation(fields: [userID], references: [id], onDelete: Cascade)
+  userID Int     @unique
+}
+
+model PortfolioImage {
+  id          Int       @id @unique @default(autoincrement())
+  name        String?
+  url         String?   @db.Text
+  portfolio   Portfolio @relation(fields: [portfolioID], references: [id], onDelete: Cascade)
+  portfolioID Int       @unique
+}

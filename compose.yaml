@@ -1,0 +1,66 @@
+version: "3"
+
+services:
+  client:
+    container_name: "client"
+    image: node:18.12
+    environment:
+      - WATCHPACK_POLLING=true
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/usr/src/client
+    working_dir: /usr/src/client
+    command: npm run dev
+    networks:
+      - backend
+    depends_on:
+      - server
+
+  server:
+    container_name: "server"
+    image: node:18.12
+    environment:
+      - MYSQL_SERVER=db
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+      - TZ=${TZ}
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+    tty: true
+    ports:
+      - 3001:3001
+      - 9229:9229
+    volumes:
+      - ./server:/usr/src/server
+    working_dir: /usr/src/server
+    command: npm run dev
+    networks:
+      - backend
+    depends_on:
+      - db
+
+  db:
+    container_name: "portfolio_db"
+    platform: linux/x86_64
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+    ports:
+      - "3306:3306"
+    volumes:
+      - 6v1-mysqldata:/var/lib/mysql
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  6v1-mysqldata:

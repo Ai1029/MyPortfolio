@@ -1,0 +1,5 @@
+node_modules
+# Keep environment variables out of version control
+.env
+fir-login-0430-firebase-adminsdk-7f4vq-ec68f1d2e7.json
+routkey.json
