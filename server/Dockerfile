@@ -1,8 +1,8 @@
 FROM node:lts
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/server
 
-COPY package*.json ./
+COPY package*.json .
 RUN npm install
 
 # AWS SDKをインストール
