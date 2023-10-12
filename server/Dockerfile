@@ -4,10 +4,10 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/server
 
 COPY package*.json .
-RUN npm install
 
 # AWS SDKをインストール
 RUN npm install aws-sdk
+RUN npm install --only=production
 
 COPY . .
 
