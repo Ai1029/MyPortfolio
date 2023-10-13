@@ -35,6 +35,7 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             .then((decodedToken) => {
             return decodedToken.uid;
         });
+        console.log("uidゲット");
         //  uidからユーザーを探す
         const user = yield prisma.user.findUnique({
             where: {

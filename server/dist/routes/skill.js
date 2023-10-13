@@ -18,12 +18,13 @@ const prisma = new client_1.PrismaClient();
 const router = express_1.default.Router();
 // skillデータを新規で作成
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, description, userID, } = req.body;
+    const { name, description, skilllevelID, userID, } = req.body;
     try {
         const newskill = yield prisma.skill.create({
             data: {
                 name: name,
                 description: description,
+                skilllevelID: skilllevelID,
                 userID: userID,
             },
         });
@@ -52,6 +53,29 @@ router.get("/:userid", (req, res) => __awaiter(void 0, void 0, void 0, function*
             where: {
                 userID: userid,
             },
+            include: {
+                skilllevel: true,
+            },
+            orderBy: [
+                {
+                    name: "asc",
+                },
+            ],
+        });
+        res.status(200).json(skill);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}));
+// skillデータをidで取得
+router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params.id);
+    try {
+        const skill = yield prisma.skill.findUnique({
+            where: {
+                id: id,
+            },
         });
         res.status(200).json(skill);
     }
@@ -60,17 +84,18 @@ router.get("/:userid", (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 }));
 // skillデータを更新
-router.patch("/:userid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const userid = Number(req.params.userid);
-    const { name, description, userID, } = req.body;
+router.patch("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params.id);
+    const { name, description, skilllevelID, userID, } = req.body;
     try {
         const updatedskill = yield prisma.skill.update({
             where: {
-                userID: userid,
+                id: id,
             },
             data: {
                 name: name,
                 description: description,
+                skilllevelID: skilllevelID,
                 userID: userID,
             },
         });
@@ -89,7 +114,7 @@ router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 id: id,
             },
         });
-        res.status(200).json(deletedskill);
+        res.status(200).json("skillデータを削除しました");
     }
     catch (error) {
         console.error(error);

@@ -16,102 +16,107 @@ const client_1 = require("@prisma/client");
 const express_1 = __importDefault(require("express"));
 const prisma = new client_1.PrismaClient();
 const router = express_1.default.Router();
-// snsデータを新規で作成
+// portfolioデータを新規で作成
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { typeofSNSID, url, userID, } = req.body;
+    const { name, description, url, userID, } = req.body;
     try {
-        const newsns = yield prisma.sNS.create({
+        const newportfolio = yield prisma.portfolio.create({
             data: {
-                typeofSNSID: typeofSNSID,
+                name: name,
+                description: description,
                 url: url,
                 userID: userID,
             },
         });
-        res.status(200).json(newsns);
+        res.status(200).json(newportfolio);
     }
     catch (error) {
         console.error(error);
         res.status(500).send("新規経験を追加できませんでした");
     }
 }));
-// snsデータの一覧を取得
+// portfolioデータの一覧を取得
 router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const snses = yield prisma.sNS.findMany();
-        res.status(200).json(snses);
+        const portfolios = yield prisma.portfolio.findMany();
+        res.status(200).json(portfolios);
     }
     catch (error) {
         console.error(error);
     }
 }));
-// snsデータをuseridで取得
+// portfolioデータをuseridで取得
 router.get("/:userid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userid = Number(req.params.userid);
     try {
-        const sns = yield prisma.sNS.findMany({
+        const portfolio = yield prisma.portfolio.findMany({
             where: {
                 userID: userid,
             },
             include: {
-                typeofSNS: true,
+                image: true, // Portfolioに関連するPortfolioImageを取得
             },
         });
-        res.status(200).json(sns);
+        res.status(200).json(portfolio);
     }
     catch (error) {
         console.error(error);
     }
 }));
-// snsデータをidで取得
+// portfolioデータをidで取得
 router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
     try {
-        const sns = yield prisma.sNS.findUnique({
+        const portfolio = yield prisma.portfolio.findUnique({
             where: {
                 id: id,
             },
+            include: {
+                image: true, //portfolioに関連するportfolioImageを取得
+            },
         });
-        res.status(200).json(sns);
+        res.status(200).json(portfolio);
     }
     catch (error) {
         console.error(error);
     }
 }));
-// snsデータを更新
+// portfolioデータを更新
 router.patch("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
-    const { typeofSNSID, url, userID, } = req.body;
+    const { name, description, url, userID, } = req.body;
     try {
-        const updatedsns = yield prisma.sNS.update({
+        const updatedportfolio = yield prisma.portfolio.update({
             where: {
                 id: id,
             },
             data: {
-                typeofSNSID: typeofSNSID,
+                name: name,
+                description: description,
                 url: url,
                 userID: userID,
             },
         });
-        res.status(200).json(updatedsns);
+        res.status(200).json(updatedportfolio);
     }
     catch (error) {
         console.error(error);
     }
 }));
-// snsデータを削除
+// portfolioデータを削除
 router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
     try {
-        const deletedsns = yield prisma.sNS.delete({
+        yield prisma.portfolio.delete({
             where: {
                 id: id,
             },
         });
-        res.status(200).json("snsデータを削除しました");
+        res.status(200).send("portfolioデータを削除しました");
     }
     catch (error) {
         console.error(error);
     }
 }));
 exports.default = router;
-//# sourceMappingURL=sns.js.map
+//# sourceMappingURL=portfolio.js.map

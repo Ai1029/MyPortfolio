@@ -11,10 +11,16 @@ const cors_1 = __importDefault(require("cors"));
 const signin_1 = __importDefault(require("./routes/signin"));
 const user_1 = __importDefault(require("./routes/user"));
 const skill_1 = __importDefault(require("./routes/skill"));
+const skilllevel_1 = __importDefault(require("./routes/skilllevel"));
 const experience_1 = __importDefault(require("./routes/experience"));
-const work_1 = __importDefault(require("./routes/work"));
+const experiencecategory_1 = __importDefault(require("./routes/experiencecategory"));
+const year_1 = __importDefault(require("./routes/year"));
+const month_1 = __importDefault(require("./routes/month"));
+const portfolio_1 = __importDefault(require("./routes/portfolio"));
 const sns_1 = __importDefault(require("./routes/sns"));
-const image_1 = __importDefault(require("./routes/image"));
+const typeofsns_1 = __importDefault(require("./routes/typeofsns"));
+const userimage_1 = __importDefault(require("./routes/userimage"));
+const portfolioimage_1 = __importDefault(require("./routes/portfolioimage"));
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.json());
@@ -28,10 +34,16 @@ app.use((0, cors_1.default)({
 app.use("/signin", signin_1.default);
 app.use("/api/v1/user", user_1.default);
 app.use("/api/v1/skill", skill_1.default);
+app.use("/api/v1/skilllevel", skilllevel_1.default);
 app.use("/api/v1/experience", experience_1.default);
-app.use("/api/v1/work", work_1.default);
+app.use("/api/v1/experiencecategory", experiencecategory_1.default);
+app.use("/api/v1/year", year_1.default);
+app.use("/api/v1/month", month_1.default);
+app.use("/api/v1/portfolio", portfolio_1.default);
 app.use("/api/v1/sns", sns_1.default);
-app.use("/api/v1/img", image_1.default);
+app.use("/api/v1/typeofsns", typeofsns_1.default);
+app.use("/api/v1/userimg", userimage_1.default);
+app.use("/api/v1/portfolioimg", portfolioimage_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next((0, http_errors_1.default)(404));

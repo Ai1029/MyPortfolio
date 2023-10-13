@@ -18,12 +18,19 @@ const prisma = new client_1.PrismaClient();
 const router = express_1.default.Router();
 // experienceデータを新規で作成
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, description, userID, } = req.body;
+    console.log("req.body", req.body);
+    const { name, description, company, experiencecategoryID, startyearID, startmonthID, finishyearID, finishmonthID, userID, } = req.body;
     try {
         const newexperience = yield prisma.experience.create({
             data: {
                 name: name,
                 description: description,
+                company: company,
+                experiencecategoryID: experiencecategoryID,
+                startyearID: startyearID,
+                startmonthID: startmonthID,
+                finishyearID: finishyearID,
+                finishmonthID: finishmonthID,
                 userID: userID,
             },
         });
@@ -39,6 +46,34 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const experiences = yield prisma.experience.findMany();
         res.status(200).json(experiences);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}));
+// experienceデータをuseridで取得
+router.get("/:userid", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userid = Number(req.params.userid);
+    try {
+        const experience = yield prisma.experience.findMany({
+            where: {
+                userID: userid,
+            },
+            include: {
+                experienceStartYear: true,
+                experienceStartMonth: true,
+                experienceFinishYear: true,
+                experienceFinishMonth: true,
+            },
+            orderBy: [
+                {
+                    experienceFinishYear: {
+                        year: "desc",
+                    },
+                },
+            ],
+        });
+        res.status(200).json(experience);
     }
     catch (error) {
         console.error(error);
@@ -62,7 +97,7 @@ router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 // experienceデータを更新
 router.patch("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
-    const { name, description, userID, } = req.body;
+    const { name, description, company, experiencecategoryID, startyearID, startmonthID, finishyearID, finishmonthID, userID, } = req.body;
     try {
         const updatedexperience = yield prisma.experience.update({
             where: {
@@ -71,6 +106,12 @@ router.patch("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* (
             data: {
                 name: name,
                 description: description,
+                company: company,
+                experiencecategoryID: experiencecategoryID,
+                startyearID: startyearID,
+                startmonthID: startmonthID,
+                finishyearID: finishyearID,
+                finishmonthID: finishmonthID,
                 userID: userID,
             },
         });
@@ -84,12 +125,12 @@ router.patch("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* (
 router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
     try {
-        const deletedexperience = yield prisma.skill.delete({
+        const deletedexperience = yield prisma.experience.delete({
             where: {
                 id: id,
             },
         });
-        res.status(200).json(deletedexperience);
+        res.status(200).json("経験データを削除しました");
     }
     catch (error) {
         console.error(error);

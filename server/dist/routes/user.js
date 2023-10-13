@@ -14,52 +14,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const express_1 = __importDefault(require("express"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const prisma = new client_1.PrismaClient();
 const router = express_1.default.Router();
 // サインアップ時にuserデータを新規で作成
 router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password, uid, introduction, hobby } = req.body;
+    const hashedPassword = yield bcrypt_1.default.hash(password, 10);
     try {
         const user = yield prisma.user.create({
             data: {
                 name,
                 email,
-                password,
+                password: hashedPassword,
                 uid,
                 introduction,
                 hobby,
-                skill: {
-                    create: [
-                        {
-                            name: "スキル名称",
-                            description: "スキル詳細",
-                        },
-                    ],
-                },
-                experience: {
-                    create: [
-                        {
-                            name: " ",
-                            description: " ",
-                        },
-                    ],
-                },
-                work: {
-                    create: [
-                        {
-                            name: " ",
-                            description: " ",
-                        },
-                    ],
-                },
-                sns: {
-                    create: [
-                        {
-                            name: " ",
-                            url: " ",
-                        },
-                    ],
-                },
             },
         });
         return res.json(user);
@@ -130,7 +100,7 @@ router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 id: id,
             },
         });
-        return res.json(deleteduser);
+        return res.json("ユーザーを削除しました");
     }
     catch (err) {
         console.log(err);
