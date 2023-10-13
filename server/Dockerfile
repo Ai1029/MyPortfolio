@@ -5,12 +5,12 @@ WORKDIR /usr/src/server
 
 COPY package*.json .
 
-RUN npm install -g prisma
-# AWS SDKをインストール
 RUN npm install aws-sdk
-RUN npm install --only=production
+RUN npm install 
 
 COPY . .
+
+COPY .env.production .env
 
 EXPOSE 3001
 

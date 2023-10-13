@@ -253,37 +253,50 @@ async function main() {
     const sns = await prisma.typeofSNS.create({
       data: snsData,
     });
-    console.log(`Created user with id: ${sns.id}`);
+    console.log(`Created typeofSNS: ${sns.id}`);
   }
 
   for (const skillLevel of skillLevelData) {
     const skill = await prisma.skillLevel.create({
       data: skillLevel,
     });
-    console.log(`Created user with id: ${skill.id}`);
+    console.log(`Created skillLevel: ${skill.id}`);
   }
 
   for (const experienceCategory of experienceCategoryData) {
     const experiencecategory = await prisma.experienceCategory.create({
       data: experienceCategory,
     });
-    console.log(`Created user with id: ${experiencecategory.id}`);
+    console.log(`Created experienceCategory: ${experiencecategory.id}`);
   }
 
   for (const year of yearData) {
-    const yeardata = await prisma.year.create({
-      data: year,
+    const existYear = await prisma.year.findUnique({
+      where: { year: year.year as string },
     });
-    console.log(`Created user with id: ${yeardata.id}`);
+    if (!existYear) {
+      const yeardata = await prisma.year.create({
+        data: year,
+      });
+      console.log(`Created year: ${yeardata.id}`);
+    } else {
+      console.log(`Year with value ${year.year} already exist`);
+    }
   }
 
   for (const month of monthData) {
-    const monthdata = await prisma.month.create({
-      data: month,
+    const existMonth = await prisma.month.findUnique({
+      where: { month: month.month as string },
     });
-    console.log(`Created user with id: ${monthdata.id}`);
+    if (!existMonth) {
+      const monthdata = await prisma.month.create({
+        data: month,
+      });
+      console.log(`Created month: ${monthdata.id}`);
+    } else {
+      console.log(`Month with volue ${month.month} already exist`);
+    }
   }
-
   console.log(`Seeding finished.`);
 }
 
