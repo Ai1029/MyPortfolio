@@ -6,7 +6,6 @@ import { PrismaClient } from "@prisma/client";
 //環境変数を切り替え
 import dotenv from "dotenv";
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-console.log("NODE_ENV", process.env.NODE_ENV);
 
 const prisma = new PrismaClient();
 const router = express.Router();
