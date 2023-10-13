@@ -11,7 +11,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { getServerSideProps } from "../api/api";
-import { Props } from "../../../types/types";
+import { Props, SelectProps } from "../../../types/types";
 import UserInfoEdit from "../../components/edituser";
 import UserSkillEdit from "../../components/editskill";
 import UserSkillCreate from "../../components/createskill";
@@ -24,7 +24,7 @@ import UserSnsCreate from "../../components/createsns";
 import { GetServerSideProps } from "next";
 import axios from "axios";
 
-const UserEdit: FC<Props> = ({
+const UserEdit: FC<Props & SelectProps> = ({
   userInfo,
   userImage,
   userSkill,
