@@ -33,6 +33,7 @@ const Userpage: FC<Props> = ({
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const appUrl = process.env.NEXT_APP_SITE_URL;
+  console.log("userInfo", userInfo);
 
   // ログイン状態を確認
   useEffect(() => {
