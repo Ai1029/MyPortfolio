@@ -21,6 +21,7 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
   const [editUserSns, setEditUserSns] = useState(userSns);
   const [snsTypes, setSnsTypes] = useState(snsType);
   const [open, setOpen] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSnsEdit = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -86,10 +87,7 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
             userID: sns.userID,
             typeofSNSID: sns.typeofSNSID,
           };
-          await axios.patch(
-            `http://localhost:3001/api/v1/sns/${sns.id}`,
-            updatedUserSns
-          );
+          await axios.patch(`${apiUrl}/api/v1/sns/${sns.id}`, updatedUserSns);
         })
       );
       // 更新が完了したらSnackbarを表示
@@ -109,7 +107,7 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
     id: number
   ) => {
     try {
-      await axios.delete(`http://localhost:3001/api/v1/sns/${id}`),
+      await axios.delete(`${apiUrl}/api/v1/sns/${id}`),
         console.log("SNSが削除されました");
       window.location.reload();
     } catch (error) {

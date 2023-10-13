@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NextPage } from "next";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import axios from "axios";
 import { SignUpInput } from "../../../types/types";
 import Avatar from "@mui/material/Avatar";
@@ -37,8 +37,6 @@ const Copyright = (props: any) => {
 
 const SignUp: NextPage = () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const ENDPOINT_URL_USER = apiUrl + "api/v1/user";
-  const ENDPOINT_URL_SIGNIN = apiUrl + "signin";
   const router = useRouter();
 
   const [input, setInput] = useState<SignUpInput>({
@@ -73,15 +71,14 @@ const SignUp: NextPage = () => {
 
       try {
         // ユーザー情報をAPIサーバに送ってMySQLに登録
-        await axios.post(ENDPOINT_URL_USER, createUser);
+        await axios.post(`${apiUrl}/api/v1/user`, createUser);
         // IDトークンを取得する
         const idToken = await user.getIdToken();
         console.log("トークンの取得できた");
-        console.log("idToken", idToken);
 
         // 発行したIDトークンを使ってサインインする（認証情報のためheaderにidTokenを入れてAPIサーバでチェック）
         const response = await axios.post(
-          ENDPOINT_URL_SIGNIN,
+          `${apiUrl}/signin`,
           {},
           {
             withCredentials: true,
@@ -95,19 +92,17 @@ const SignUp: NextPage = () => {
         if (response.status === 200) {
           console.log("ログイン成功");
           const userData = response.data; // ユーザーデータを取得
-          console.log(userData);
-          console.log(userData.id);
 
           //　データの取得が完了してからルート遷移を行う
           await router.push(`/userpage/${userData.id}`);
         } else {
           console.log("ログイン失敗");
         }
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 

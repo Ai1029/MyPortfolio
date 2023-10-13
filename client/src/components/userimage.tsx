@@ -7,6 +7,7 @@ const UserImageUpload = () => {
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
   const userID = router.query.id as string; // クエリパラメーターからユーザーIDを取得
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // 画像の選択
   const handleImageSelect: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -30,7 +31,7 @@ const UserImageUpload = () => {
       formData.append("userID", userID);
       try {
         const response = await axios.patch(
-          "http://localhost:3001/api/v1/userimg",
+          `${apiUrl}/api/v1/userimg`,
           formData,
           {
             headers: {

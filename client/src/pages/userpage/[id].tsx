@@ -1,4 +1,4 @@
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import { signOut, onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
@@ -32,6 +32,7 @@ const Userpage: FC<Props> = ({
 }) => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const appUrl = process.env.NEXT_APP_SITE_URL;
 
   // ログイン状態を確認
   useEffect(() => {
@@ -54,7 +55,7 @@ const Userpage: FC<Props> = ({
     signOut(auth)
       .then(async () => {
         console.log("ユーザーがサインアウトしました");
-        const url = `http://localhost:3000/signin`;
+        const url = `${appUrl}/signin`;
         router.push(url);
       })
       .catch((error) => {

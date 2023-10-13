@@ -6,6 +6,7 @@ import axios from "axios";
 export const getServerSideProps: GetServerSideProps = async ({
   params,
 }: GetServerSidePropsContext<ParsedUrlQuery>) => {
+  const apiURL = process.env.NEXT_PUBLIC_API_URL;
   try {
     if (!params?.id) {
       console.error("ユーザー情報がありません");
@@ -26,9 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       };
     } else {
       // ユーザー情報を取得
-      const userRes = await axios.get(
-        `http://server:3001/api/v1/user/${params.id}`
-      );
+      const userRes = await axios.get(`${apiURL}/api/v1/user/${params.id}`);
       console.log("ユーザー情報ゲット", userRes);
 
       // ユーザー情報からユーザーIDを取得
@@ -37,54 +36,50 @@ export const getServerSideProps: GetServerSideProps = async ({
 
       // ユーザーIDを使用して関連する画像データを取得
       const userImageRes = await axios.get(
-        `http://server:3001/api/v1/userimg/${userID}`
+        `${apiURL}/api/v1/userimg/${userID}`
       );
       console.log("画像データゲット", userImageRes);
 
       // ユーザーIDを使用して関連するスキルを取得
-      const skillRes = await axios.get(
-        `http://server:3001/api/v1/skill/${userID}`
-      );
+      const skillRes = await axios.get(`${apiURL}/api/v1/skill/${userID}`);
       console.log("スキルゲット", skillRes);
 
       // スキルレベルを取得
-      const skilllevelRes = await axios.get(
-        `http://server:3001/api/v1/skilllevel`
-      );
+      const skilllevelRes = await axios.get(`${apiURL}/api/v1/skilllevel`);
       console.log("スキルレベルをゲット", skilllevelRes);
 
       // ユーザーIDを使用して関連する経験を取得
       const experienceRes = await axios.get(
-        `http://server:3001/api/v1/experience/${userID}`
+        `${apiURL}/api/v1/experience/${userID}`
       );
       console.log("経験ゲット", experienceRes);
 
       // experienceCategoryを取得
       const experienceCategoryRes = await axios.get(
-        `http://server:3001/api/v1/experiencecategory`
+        `${apiURL}/api/v1/experiencecategory`
       );
       console.log("経験のカテゴリーゲット", experienceCategoryRes);
 
       // yearを取得
-      const yearRes = await axios.get(`http://server:3001/api/v1/year`);
+      const yearRes = await axios.get(`${apiURL}/api/v1/year`);
       console.log("年ゲット", yearRes);
 
       // monthを取得
-      const monthRes = await axios.get(`http://server:3001/api/v1/month`);
+      const monthRes = await axios.get(`${apiURL}/api/v1/month`);
       console.log("月ゲット", monthRes);
 
       // ユーザーIDを使用して関連するポートフォリオとポートフォリオ画像を取得
       const portfolioRes = await axios.get(
-        `http://server:3001/api/v1/portfolio/${userID}`
+        `${apiURL}/api/v1/portfolio/${userID}`
       );
       console.log("ポートフォリオゲット", portfolioRes);
 
       // ユーザーIDを使用して関連するSNSを取得
-      const snsRes = await axios.get(`http://server:3001/api/v1/sns/${userID}`);
+      const snsRes = await axios.get(`${apiURL}/api/v1/sns/${userID}`);
       console.log("SNSゲット", snsRes);
 
       // SNSの種類を取得
-      const snstypeRes = await axios.get(`http://server:3001/api/v1/typeofsns`);
+      const snstypeRes = await axios.get(`${apiURL}/api/v1/typeofsns`);
       console.log("SNSの種類ゲット", snstypeRes);
 
       return {

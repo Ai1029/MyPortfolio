@@ -8,6 +8,7 @@ import { Box, Grid, TextField, Button, MenuItem } from "@mui/material";
 const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
   const router = useRouter();
   const { id } = router.query; //ユーザーID
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [snsTypes, setSnsTypes] = useState(snsType);
   const [newSns, setNewSns] = useState({
@@ -37,7 +38,7 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
     e.preventDefault();
     try {
       // 新しいポートフォリオをサーバーにPOST
-      const response = await axios.post(`http://localhost:3001/api/v1/sns`, {
+      const response = await axios.post(`${apiUrl}/api/v1/sns`, {
         url: newSns.url,
         userID: Number(id),
         typeofSNSID: newSnsType,

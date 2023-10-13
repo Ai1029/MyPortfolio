@@ -29,6 +29,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
   const [editYear, setEditYear] = useState(year);
   const [editMonth, setEditMonth] = useState(month);
   const [open, setOpen] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleExperienceEdit = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -156,7 +157,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
             userID: experience.userID,
           };
           await axios.patch(
-            `http://localhost:3001/api/v1/experience/${experience.id}`,
+            `${apiUrl}/api/v1/experience/${experience.id}`,
             updatedUserExperience
           );
         })
@@ -178,7 +179,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
     id: number
   ) => {
     try {
-      await axios.delete(`http://localhost:3001/api/v1/experience/${id}`),
+      await axios.delete(`${apiUrl}/api/v1/experience/${id}`),
         console.log("職務・学習経歴が削除されました");
       window.location.reload();
     } catch (error) {

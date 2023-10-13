@@ -20,6 +20,7 @@ const UserInfoEdit: FC<UserProps> = ({ userInfo, userImage }) => {
   const [editUserInfo, setEditUserInfo] = useState(userInfo);
   const [open, setOpen] = useState(false);
   const user = auth.currentUser; //　現在のユーザー
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleUserEdit = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -48,10 +49,7 @@ const UserInfoEdit: FC<UserProps> = ({ userInfo, userImage }) => {
       return;
     }
     try {
-      await axios.patch(
-        `http://localhost:3001/api/v1/user/${userInfo.id}`,
-        editUserInfo
-      );
+      await axios.patch(`${apiUrl}/api/v1/user/${userInfo.id}`, editUserInfo);
       //　firebaseの方のemailを修正
       if (user) {
         updateEmail(user, newEmail)

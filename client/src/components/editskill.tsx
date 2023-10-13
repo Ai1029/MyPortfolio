@@ -21,6 +21,7 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
   const [editUserSkill, setEditUserSkill] = useState(userSkill);
   const [skillLevels, setSkillLevels] = useState(skillLevel);
   const [open, setOpen] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSkillEdit = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -86,7 +87,7 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
             skilllevelID: skill.skilllevelID,
           };
           await axios.patch(
-            `http://localhost:3001/api/v1/skill/${skill.id}`,
+            `${apiUrl}/api/v1/skill/${skill.id}`,
             updatedUserSkill
           );
         })
@@ -110,7 +111,7 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
     id: number
   ) => {
     try {
-      await axios.delete(`http://localhost:3001/api/v1/skill/${id}`),
+      await axios.delete(`${apiUrl}/api/v1/skill/${id}`),
         console.log("スキルが削除されました");
       window.location.reload();
     } catch (error) {

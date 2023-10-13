@@ -13,6 +13,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
 }) => {
   const router = useRouter();
   const { id } = router.query;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [experienceCategorys, setExperienceCategorys] =
     useState(experienceCategory);
@@ -72,20 +73,17 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
 
     try {
       // 新しい職業経歴をサーバーにPOST
-      const response = await axios.post(
-        `http://localhost:3001/api/v1/experience`,
-        {
-          experiencecategoryID: newExperienceCategory,
-          name: newExperience.name,
-          description: newExperience.description,
-          company: newExperience.company,
-          startyearID: newExperienceDates.startyearID,
-          startmonthID: newExperienceDates.startmonthID,
-          finishyearID: newExperienceDates.finishyearID,
-          finishmonthID: newExperienceDates.finishmonthID,
-          userID: Number(id),
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/v1/experience`, {
+        experiencecategoryID: newExperienceCategory,
+        name: newExperience.name,
+        description: newExperience.description,
+        company: newExperience.company,
+        startyearID: newExperienceDates.startyearID,
+        startmonthID: newExperienceDates.startmonthID,
+        finishyearID: newExperienceDates.finishyearID,
+        finishmonthID: newExperienceDates.finishmonthID,
+        userID: Number(id),
+      });
       if (response.status === 200) {
         // input要素を空にする
         window.location.reload();

@@ -8,6 +8,8 @@ import { Box, Grid, TextField, Button } from "@mui/material";
 const UserPortfolioCreate: FC<PortfolioProps> = ({ userPortfolio }) => {
   const router = useRouter();
   const { id } = router.query;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const [newPortfolio, setNewPortfolio] = useState({
     name: "",
     description: "",
@@ -45,15 +47,12 @@ const UserPortfolioCreate: FC<PortfolioProps> = ({ userPortfolio }) => {
 
     try {
       // 新しいポートフォリオをサーバーにPOST
-      const response = await axios.post(
-        `http://localhost:3001/api/v1/portfolio`,
-        {
-          name: newPortfolio.name,
-          description: newPortfolio.description,
-          url: newPortfolio.url,
-          userID: Number(id),
-        }
-      );
+      const response = await axios.post(`${apiUrl}/api/v1/portfolio`, {
+        name: newPortfolio.name,
+        description: newPortfolio.description,
+        url: newPortfolio.url,
+        userID: Number(id),
+      });
       // POSTが成功して、画像が選択されていた場合
       if (response.status === 200) {
         // ポートフォリオのPOSTが成功後、ポートフォリオのIDを取得
@@ -64,7 +63,7 @@ const UserPortfolioCreate: FC<PortfolioProps> = ({ userPortfolio }) => {
           formData.append("image", addfile);
           formData.append("portfolioID", portfolioID);
           const imageResponse = await axios.post(
-            `http://localhost:3001/api/v1/portfolioimg`,
+            `${apiUrl}/api/v1/portfolioimg`,
             formData,
             {
               headers: {

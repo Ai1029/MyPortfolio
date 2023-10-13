@@ -9,7 +9,6 @@ import {
   Typography,
   createTheme,
   ThemeProvider,
-  Link,
 } from "@mui/material";
 import { getServerSideProps } from "../api/api";
 import { Props } from "../../../types/types";

@@ -16,6 +16,7 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
   const [editUserPortfolio, setEditUserPortfolio] = useState(userPortfolio);
   const [editfile, setEditFile] = useState<Record<number, File | null>>({}); // portfolioIDをキーする
   const [open, setOpen] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   // 編集画像の選択
   const handleEditImageSelect = (
@@ -68,7 +69,7 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
           };
 
           const response = await axios.patch(
-            `http://localhost:3001/api/v1/portfolio/${portfolio.id}`,
+            `${apiUrl}/api/v1/portfolio/${portfolio.id}`,
             updatedUserPortfolio
           );
 
@@ -84,18 +85,18 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
             try {
               //　既存の画像があるか確認する
               const imageGetResponse = await axios.get(
-                `http://localhost:3001/api/v1/portfolioimg/${portfolioID}`
+                `${apiUrl}/api/v1/portfolioimg/${portfolioID}`
               );
 
               if (imageGetResponse.status === 200) {
                 // 既存画像を削除
                 const imageDeleteResponse = await axios.delete(
-                  `http://localhost:3001/api/v1/portfolioimg/${portfolioID}`
+                  `${apiUrl}/api/v1/portfolioimg/${portfolioID}`
                 );
 
                 //　更新する画像をpost
                 const imagePostResponse = await axios.post(
-                  `http://localhost:3001/api/v1/portfolioimg/${portfolioID}`,
+                  `${apiUrl}/api/v1/portfolioimg/${portfolioID}`,
                   formData,
                   {
                     headers: {
@@ -112,7 +113,7 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
                 // 既存の画像が存在しない場合、そのまま新しい画像をポスト
 
                 const imagePostResponse = await axios.post(
-                  `http://localhost:3001/api/v1/portfolioimg/${portfolioID}`,
+                  `${apiUrl}/api/v1/portfolioimg/${portfolioID}`,
                   formData,
                   {
                     headers: {
@@ -148,7 +149,7 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
     id: number
   ) => {
     try {
-      await axios.delete(`http://localhost:3001/api/v1/portfolio/${id}`);
+      await axios.delete(`${apiUrl}/api/v1/portfolio/${id}`);
       console.log("ポートフォリオとポートフォリオの画像が削除されました");
 
       window.location.reload();

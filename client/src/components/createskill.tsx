@@ -8,6 +8,7 @@ import { Box, Grid, TextField, Button, MenuItem } from "@mui/material";
 const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
   const router = useRouter();
   const { id } = router.query; // ユーザーID
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [skillLevels, setSkillLevels] = useState(skillLevel);
   const [newSkill, setNewSkill] = useState({
@@ -39,7 +40,7 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
 
     try {
       // 新しいスキルをサーバーにPOST
-      const response = await axios.post(`http://localhost:3001/api/v1/skill`, {
+      const response = await axios.post(`${apiUrl}/api/v1/skill`, {
         name: newSkill.name,
         description: newSkill.description,
         userID: Number(id),
