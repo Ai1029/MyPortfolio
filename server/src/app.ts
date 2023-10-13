@@ -26,14 +26,22 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://my-portfolio-psi-swart-91.vercel.app",
+];
+
 app.use(
   cors({
-    credentials: true,
-    origin: [
-      "http://localhost:3000",
-      "https://my-portfolio-psi-swart-91.vercel.app",
-    ], //アクセス許可するオリジン
-    optionsSuccessStatus: 200, //レスポンスstatusを200に設定
+    origin: (origin, callback) => {
+      if (allowedOrigins.indexOf(origin || "") !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // クッキーを使用するために設定
   })
 );
 
