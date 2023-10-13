@@ -10,8 +10,6 @@ RUN npm install
 
 COPY . .
 
-COPY .env.production .env
-
 EXPOSE 3001
 
 CMD ["npm", "start"]
