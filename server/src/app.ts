@@ -30,6 +30,7 @@ app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:3000",
   "https://my-portfolio-psi-swart-91.vercel.app",
+  "https://my-portfolio-rfe3e0bpv-ai1029.vercel.app",
 ];
 
 app.use(
