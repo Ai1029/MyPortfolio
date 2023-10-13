@@ -29,7 +29,10 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000", //アクセス許可するオリジン
+    origin: [
+      "http://localhost:3000",
+      "https://my-portfolio-psi-swart-91.vercel.app/",
+    ], //アクセス許可するオリジン
     optionsSuccessStatus: 200, //レスポンスstatusを200に設定
   })
 );
