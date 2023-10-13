@@ -11,6 +11,10 @@ const app_1 = __importDefault(require("../app"));
 const debug_1 = __importDefault(require("debug"));
 ("server:server");
 const http_1 = __importDefault(require("http"));
+//環境変数を切り替え
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({ path: `.env.${process.env.NODE_ENV}` });
+console.log("NODE_ENV", process.env.NODE_ENV);
 /**
  * Get port from environment and store in Express.
  */

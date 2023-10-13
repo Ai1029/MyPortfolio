@@ -9,6 +9,11 @@ import debug from "debug";
 ("server:server");
 import http from "http";
 
+//環境変数を切り替え
+import dotenv from "dotenv";
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
+console.log("NODE_ENV", process.env.NODE_ENV);
+
 /**
  * Get port from environment and store in Express.
  */
