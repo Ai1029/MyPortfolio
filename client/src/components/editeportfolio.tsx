@@ -259,19 +259,20 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
               >
                 アプリを削除
               </Button>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mb: 2,
+                }}
+              >
+                Portfolio 編集を保存
+              </Button>
             </>
           ))}
 
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{
-            mb: 2,
-          }}
-        >
-          Portfolio 編集を保存
-        </Button>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
             Portfolio 情報の更新が完了しました
