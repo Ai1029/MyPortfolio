@@ -25,81 +25,51 @@ export const getServerSideProps: GetServerSideProps = async ({
           snsType: null,
         },
       };
-    } else {
-      // ユーザー情報を取得
-      const userRes = await axios.get(`${apiURL}/api/v1/user/${params.id}`);
-      console.log("ユーザー情報ゲット", userRes);
-
-      // ユーザー情報からユーザーIDを取得
-      const userID = userRes.data.id;
-      console.log("ユーザーIDゲット", userID);
-
-      // ユーザーIDを使用して関連する画像データを取得
-      const userImageRes = await axios.get(
-        `${apiURL}/api/v1/userimg/${userID}`
-      );
-      console.log("画像データゲット", userImageRes);
-
-      // ユーザーIDを使用して関連するスキルを取得
-      const skillRes = await axios.get(`${apiURL}/api/v1/skill/${userID}`);
-      console.log("スキルゲット", skillRes);
-
-      // スキルレベルを取得
-      const skilllevelRes = await axios.get(`${apiURL}/api/v1/skilllevel`);
-      console.log("スキルレベルをゲット", skilllevelRes);
-
-      // ユーザーIDを使用して関連する経験を取得
-      const experienceRes = await axios.get(
-        `${apiURL}/api/v1/experience/${userID}`
-      );
-      console.log("経験ゲット", experienceRes);
-
-      // experienceCategoryを取得
-      const experienceCategoryRes = await axios.get(
-        `${apiURL}/api/v1/experiencecategory`
-      );
-      console.log("経験のカテゴリーゲット", experienceCategoryRes);
-
-      // yearを取得
-      const yearRes = await axios.get(`${apiURL}/api/v1/year`);
-      console.log("年ゲット", yearRes);
-
-      // monthを取得
-      const monthRes = await axios.get(`${apiURL}/api/v1/month`);
-      console.log("月ゲット", monthRes);
-
-      // ユーザーIDを使用して関連するポートフォリオとポートフォリオ画像を取得
-      const portfolioRes = await axios.get(
-        `${apiURL}/api/v1/portfolio/${userID}`
-      );
-      console.log("ポートフォリオゲット", portfolioRes);
-
-      // ユーザーIDを使用して関連するSNSを取得
-      const snsRes = await axios.get(`${apiURL}/api/v1/sns/${userID}`);
-      console.log("SNSゲット", snsRes);
-
-      // SNSの種類を取得
-      const snstypeRes = await axios.get(`${apiURL}/api/v1/typeofsns`);
-      console.log("SNSの種類ゲット", snstypeRes);
-
-      return {
-        props: {
-          userInfo: userRes.data,
-          userImage: userImageRes.data,
-          userSkill: skillRes.data,
-          skillLevel: skilllevelRes.data,
-          userExperience: experienceRes.data,
-          experienceCategory: experienceCategoryRes.data,
-          year: yearRes.data,
-          month: monthRes.data,
-          userPortfolio: portfolioRes.data,
-          userSns: snsRes.data,
-          snsType: snstypeRes.data,
-        },
-      };
     }
-  } catch (err) {
-    console.error(err);
+
+    const [
+      userRes,
+      userImageRes,
+      skillRes,
+      skilllevelRes,
+      experienceRes,
+      experienceCategoryRes,
+      yearRes,
+      monthRes,
+      portfolioRes,
+      snsRes,
+      snstypeRes,
+    ] = await Promise.all([
+      axios.get(`${apiURL}/api/v1/user/${params.id}`),
+      axios.get(`${apiURL}/api/v1/userimg/${params.id}`),
+      axios.get(`${apiURL}/api/v1/skill/${params.id}`),
+      axios.get(`${apiURL}/api/v1/skilllevel`),
+      axios.get(`${apiURL}/api/v1/experience/${params.id}`),
+      axios.get(`${apiURL}/api/v1/experiencecategory`),
+      axios.get(`${apiURL}/api/v1/year`),
+      axios.get(`${apiURL}/api/v1/month`),
+      axios.get(`${apiURL}/api/v1/portfolio/${params.id}`),
+      axios.get(`${apiURL}/api/v1/sns/${params.id}`),
+      axios.get(`${apiURL}/api/v1/typeofsns`),
+    ]);
+
+    return {
+      props: {
+        userInfo: userRes.data,
+        userImage: userImageRes.data,
+        userSkill: skillRes.data,
+        skillLevel: skilllevelRes.data,
+        userExperience: experienceRes.data,
+        experienceCategory: experienceCategoryRes.data,
+        year: yearRes.data,
+        month: monthRes.data,
+        userPortfolio: portfolioRes.data,
+        userSns: snsRes.data,
+        snsType: snstypeRes.data,
+      },
+    };
+  } catch (error) {
+    console.error(error);
     return {
       props: {
         userInfo: null,
