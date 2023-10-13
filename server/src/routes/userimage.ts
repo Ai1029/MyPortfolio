@@ -3,8 +3,10 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import { S3Client, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { PrismaClient } from "@prisma/client";
+//環境変数を切り替え
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
+console.log("NODE_ENV", process.env.NODE_ENV);
 
 const prisma = new PrismaClient();
 const router = express.Router();
