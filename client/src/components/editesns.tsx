@@ -186,20 +186,21 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
                   </Button>
                 </Grid>
               </Grid>
+
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                }}
+              >
+                SNS 編集を保存
+              </Button>
             </>
           ))}
 
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{
-            mt: 2,
-            mb: 2,
-          }}
-        >
-          SNS 編集を保存
-        </Button>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="success">
             SNS 情報の更新が完了しました
