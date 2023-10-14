@@ -201,7 +201,9 @@ const UserSkillEdit: FC<Props> = ({ userInfo }) => {
                     {skillLevels && skillLevels.length > 0 ? (
                       skillLevels.map((level) => (
                         <MenuItem key={level.id} value={level.id}>
-                          {level.level}
+                          {level && level.level
+                            ? level.level
+                            : "スキルレベルがありません"}
                         </MenuItem>
                       ))
                     ) : (
