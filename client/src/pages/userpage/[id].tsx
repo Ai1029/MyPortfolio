@@ -28,7 +28,7 @@ import axios from "axios";
 const Userpage: FC<Props> = ({
   userInfo,
   userImage,
-  // userSkill,
+  userSkill,
   // userExperience,
   // userPortfolio,
   // userSns,
@@ -103,8 +103,8 @@ const Userpage: FC<Props> = ({
             )}
           </AppBar>
           <UserpageInfo userInfo={userInfo} userImage={userImage} />
-          {/* <UserpageSkill userSkill={userSkill} />
-          <UserpagePortfolio userPortfolio={userPortfolio} />
+          <UserpageSkill userSkill={userSkill} />
+          {/* <UserpagePortfolio userPortfolio={userPortfolio} />
           <UserpageExperience userExperience={userExperience} />
           <UserpageSns userSns={userSns} /> */}
         </Box>
@@ -129,7 +129,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         props: {
           userInfo: null,
           userImage: null,
-          // userSkill: null,
+          userSkill: null,
           // skillLevel: null,
           // userExperience: null,
           // experienceCategory: null,
@@ -145,7 +145,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     const [
       userRes,
       userImageRes,
-      // skillRes,
+      skillRes,
       // skilllevelRes,
       // experienceRes,
       // experienceCategoryRes,
@@ -157,7 +157,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     ] = await Promise.all([
       axios.get(`${apiURL}/api/v1/user/${params.id}`),
       axios.get(`${apiURL}/api/v1/userimg/${params.id}`),
-      // axios.get(`${apiURL}/api/v1/skill/${params.id}`),
+      axios.get(`${apiURL}/api/v1/skill/${params.id}`),
       // axios.get(`${apiURL}/api/v1/skilllevel`),
       // axios.get(`${apiURL}/api/v1/experience/${params.id}`),
       // axios.get(`${apiURL}/api/v1/experiencecategory`),
@@ -172,7 +172,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       props: {
         userInfo: userRes.data,
         userImage: userImageRes.data,
-        // userSkill: skillRes.data,
+        userSkill: skillRes.data,
         // skillLevel: skilllevelRes.data,
         // userExperience: experienceRes.data,
         // experienceCategory: experienceCategoryRes.data,
@@ -189,7 +189,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       props: {
         userInfo: null,
         userImage: null,
-        // userSkill: null,
+        userSkill: null,
         // skillLevel: null,
         // userExperience: null,
         // experienceCategory: null,
