@@ -28,10 +28,10 @@ import axios from "axios";
 const Userpage: FC<Props> = ({
   userInfo,
   userImage,
-  userSkill,
-  userExperience,
-  userPortfolio,
-  userSns,
+  // userSkill,
+  // userExperience,
+  // userPortfolio,
+  // userSns,
 }) => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
@@ -103,10 +103,10 @@ const Userpage: FC<Props> = ({
             )}
           </AppBar>
           <UserpageInfo userInfo={userInfo} userImage={userImage} />
-          <UserpageSkill userSkill={userSkill} />
+          {/* <UserpageSkill userSkill={userSkill} />
           <UserpagePortfolio userPortfolio={userPortfolio} />
           <UserpageExperience userExperience={userExperience} />
-          <UserpageSns userSns={userSns} />
+          <UserpageSns userSns={userSns} /> */}
         </Box>
       </Grid>
     </ThemeProvider>
@@ -129,14 +129,14 @@ export const getServerSideProps: GetServerSideProps = async ({
         props: {
           userInfo: null,
           userImage: null,
-          userSkill: null,
+          // userSkill: null,
           // skillLevel: null,
-          userExperience: null,
+          // userExperience: null,
           // experienceCategory: null,
           // year: null,
           // month: null,
-          userPortfolio: null,
-          userSns: null,
+          // userPortfolio: null,
+          // userSns: null,
           // snsType: null,
         },
       };
