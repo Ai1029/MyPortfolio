@@ -57,6 +57,13 @@ router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             where: {
                 id: id,
             },
+            include: {
+                image: true,
+                skill: true,
+                experience: true,
+                portfolio: true,
+                sns: true,
+            },
         });
         res.json(user);
         if (!user) {

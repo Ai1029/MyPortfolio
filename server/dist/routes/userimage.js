@@ -17,8 +17,9 @@ const multer_1 = __importDefault(require("multer"));
 const multer_s3_1 = __importDefault(require("multer-s3"));
 const client_s3_1 = require("@aws-sdk/client-s3");
 const client_1 = require("@prisma/client");
+//環境変数を切り替え
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+dotenv_1.default.config({ path: `.env.${process.env.NODE_ENV}` });
 const prisma = new client_1.PrismaClient();
 const router = express_1.default.Router();
 const s3 = new client_s3_1.S3Client({
