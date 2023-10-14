@@ -1,20 +1,33 @@
-import React, { useState, FC } from "react";
+import React, { useState, FC, useEffect } from "react";
 import axios from "axios";
-import { Props, SelectProps } from "../../types/types";
+import { skilllevel } from "../../types/types";
 import { useRouter } from "next/router";
 import { Box, Grid, TextField, Button, MenuItem } from "@mui/material";
 
-const UserSkillEdit: FC<SelectProps> = ({ skillLevel }) => {
+const UserSkillEdit: FC = () => {
   const router = useRouter();
   const { id } = router.query; // ユーザーID
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-  const [skillLevels, setSkillLevels] = useState(skillLevel);
   const [newSkill, setNewSkill] = useState({
     name: "",
     description: "",
   });
   const [newSkillLevel, setNewSkillLevel] = useState(0);
+  const [skillLevels, setSkillLevels] = useState<skilllevel[]>([]);
+
+  useEffect(() => {
+    //APIからSkillLevelデータを取得する関数を定義
+    const fetchAllSkillLevels = async () => {
+      try {
+        const res = await axios.get(`${apiUrl}/api/v1/list`);
+        console.log("res", res);
+        setSkillLevels(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllSkillLevels();
+  }, []);
 
   const handleSkillAdd = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

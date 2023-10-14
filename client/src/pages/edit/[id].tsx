@@ -26,7 +26,6 @@ import axios from "axios";
 
 const UserEdit: FC<Props & SelectProps> = ({
   userInfo,
-  skillLevel,
   experienceCategory,
   year,
   month,
@@ -56,8 +55,8 @@ const UserEdit: FC<Props & SelectProps> = ({
           </AppBar>
 
           <UserInfoEdit userInfo={userInfo} />
-          <UserSkillEdit userInfo={userInfo} skillLevel={skillLevel} />
-          <UserSkillCreate skillLevel={skillLevel} />
+          <UserSkillEdit userInfo={userInfo} />
+          <UserSkillCreate />
           <UserPortfolioEdit userInfo={userInfo} />
           <UserPortfolioCreate />
           <UserExperienceEdit
