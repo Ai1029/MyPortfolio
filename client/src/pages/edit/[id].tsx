@@ -21,25 +21,23 @@ import UserPortfolioCreate from "../../components/createportfolio";
 import UserSnsEdit from "../../components/editesns";
 import UserSnsCreate from "../../components/createsns";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import axios from "axios";
 import { ParsedUrlQuery } from "querystring";
+import axios from "axios";
 
 const UserEdit: FC<Props & SelectProps> = ({
   userInfo,
   // userImage,
   // userSkill,
-  skillLevel,
+  // skillLevel,
   // userExperience,
-  experienceCategory,
-  year,
-  month,
+  // experienceCategory,
+  // year,
+  // month,
   // userPortfolio,
   // userSns,
-  snsType,
+  // snsType,
 }) => {
   const defaultTheme = createTheme();
-  console.log("skillLevel", skillLevel);
-  console.log("year", year);
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -63,23 +61,14 @@ const UserEdit: FC<Props & SelectProps> = ({
           </AppBar>
 
           <UserInfoEdit userInfo={userInfo} />
-          <UserSkillEdit userInfo={userInfo} skillLevel={skillLevel} />
-          <UserSkillCreate skillLevel={skillLevel} />
+          <UserSkillEdit userInfo={userInfo} />
+          <UserSkillCreate />
           <UserPortfolioEdit userInfo={userInfo} />
           <UserPortfolioCreate />
-          <UserExperienceEdit
-            userInfo={userInfo}
-            experienceCategory={experienceCategory}
-            year={year}
-            month={month}
-          />
-          <UserExperienceCreate
-            experienceCategory={experienceCategory}
-            year={year}
-            month={month}
-          />
-          <UserSnsEdit userInfo={userInfo} snsType={snsType} />
-          <UserSnsCreate snsType={snsType} />
+          <UserExperienceEdit userInfo={userInfo} />
+          <UserExperienceCreate />
+          <UserSnsEdit userInfo={userInfo} />
+          <UserSnsCreate />
         </Box>
       </Grid>
     </ThemeProvider>
@@ -103,14 +92,14 @@ export const getServerSideProps: GetServerSideProps = async ({
           userInfo: null,
           // userImage: null,
           // userSkill: null,
-          skillLevel: null,
+          // skillLevel: null,
           // userExperience: null,
-          experienceCategory: null,
-          year: null,
-          month: null,
+          // experienceCategory: null,
+          // year: null,
+          // month: null,
           // userPortfolio: null,
           // userSns: null,
-          snsType: null,
+          // snsType: null,
         },
       };
     }
@@ -119,26 +108,26 @@ export const getServerSideProps: GetServerSideProps = async ({
       userRes,
       // userImageRes,
       // skillRes,
-      skilllevelRes,
+      // skilllevelRes,
       // experienceRes,
-      experienceCategoryRes,
-      yearRes,
-      monthRes,
+      // experienceCategoryRes,
+      // yearRes,
+      // monthRes,
       // portfolioRes,
       // snsRes,
-      snstypeRes,
+      // snstypeRes,
     ] = await Promise.all([
       axios.get(`${apiURL}/api/v1/user/${params.id}`),
       // axios.get(`${apiURL}/api/v1/userimg/${params.id}`),
       // axios.get(`${apiURL}/api/v1/skill/${params.id}`),
-      axios.get(`${apiURL}/api/v1/skilllevel`),
+      // axios.get(`${apiURL}/api/v1/skilllevel`),
       // axios.get(`${apiURL}/api/v1/experience/${params.id}`),
-      axios.get(`${apiURL}/api/v1/experiencecategory`),
-      axios.get(`${apiURL}/api/v1/year`),
-      axios.get(`${apiURL}/api/v1/month`),
+      // axios.get(`${apiURL}/api/v1/experiencecategory`),
+      // axios.get(`${apiURL}/api/v1/year`),
+      // axios.get(`${apiURL}/api/v1/month`),
       // axios.get(`${apiURL}/api/v1/portfolio/${params.id}`),
       // axios.get(`${apiURL}/api/v1/sns/${params.id}`),
-      axios.get(`${apiURL}/api/v1/typeofsns`),
+      // axios.get(`${apiURL}/api/v1/typeofsns`),
     ]);
 
     return {
@@ -146,14 +135,14 @@ export const getServerSideProps: GetServerSideProps = async ({
         userInfo: userRes.data,
         // userImage: userImageRes.data,
         // userSkill: skillRes.data,
-        skillLevel: skilllevelRes.data,
+        // skillLevel: skilllevelRes.data,
         // userExperience: experienceRes.data,
-        experienceCategory: experienceCategoryRes.data,
-        year: yearRes.data,
-        month: monthRes.data,
+        // experienceCategory: experienceCategoryRes.data,
+        // year: yearRes.data,
+        // month: monthRes.data,
         // userPortfolio: portfolioRes.data,
         // userSns: snsRes.data,
-        snsType: snstypeRes.data,
+        // snsType: snstypeRes.data,
       },
     };
   } catch (error) {
@@ -163,14 +152,14 @@ export const getServerSideProps: GetServerSideProps = async ({
         userInfo: null,
         // userImage: null,
         // userSkill: null,
-        skillLevel: null,
+        // skillLevel: null,
         // userExperience: null,
-        experienceCategory: null,
-        year: null,
-        month: null,
+        // experienceCategory: null,
+        // year: null,
+        // month: null,
         // userPortfolio: null,
         // userSns: null,
-        snsType: null,
+        // snsType: null,
       },
     };
   }
