@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       snsRes,
       snstypeRes,
     ] = await Promise.all([
-      axios.get(`http://127.0.0.1:3001/api/v1/user/${params.id}`),
+      axios.get(`${apiURL}/api/v1/user/${params.id}`),
       axios.get(`${apiURL}/api/v1/userimg/${params.id}`),
       axios.get(`${apiURL}/api/v1/skill/${params.id}`),
       axios.get(`${apiURL}/api/v1/skilllevel`),
