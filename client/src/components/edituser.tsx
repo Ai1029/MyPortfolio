@@ -1,7 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
 import UserImageUpload from "./userimage";
-
 import { Props } from "../../types/types";
 import {
   Avatar,
