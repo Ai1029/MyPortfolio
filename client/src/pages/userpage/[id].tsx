@@ -32,8 +32,10 @@ const Userpage: FC<Props> = ({
 }) => {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const appUrl = process.env.NEXT_APP_SITE_URL;
+  const appUrl = process.env.NEXT_PUBLIC_APP_SITE_URL;
+
   console.log("userInfo", userInfo);
+  console.log("userSkill", userSkill);
 
   // ログイン状態を確認
   useEffect(() => {
@@ -82,9 +84,9 @@ const Userpage: FC<Props> = ({
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   MyPortfolio
                 </Typography>
-                <Button href={`/edit/${userInfo.id}`} color="inherit">
+                {/* <Button href={`/edit/${userInfo.id}`} color="inherit">
                   Edit
-                </Button>
+                </Button> */}
                 <Button type="submit" color="inherit" onClick={signout}>
                   SignOut
                 </Button>

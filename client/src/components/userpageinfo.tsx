@@ -7,6 +7,7 @@ import "react-vertical-timeline-component/style.min.css";
 
 const UserpageInfo: FC<UserProps> = ({ userInfo, userImage }) => {
   const router = useRouter();
+  console.log("userInfo2", userInfo);
 
   return (
     <Box

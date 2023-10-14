@@ -119,15 +119,15 @@ export type Props = {
   userInfo: user;
   userImage: userimage;
   userSkill: skill[];
-  // skillLevel: skilllevel[];
+  skillLevel: skilllevel[];
   userExperience: experience[];
-  // experienceCategory: experienceCategory[];
-  // year: year[];
-  // month: month[];
+  experienceCategory: experienceCategory[];
+  year: year[];
+  month: month[];
   userPortfolio: portfolio[];
   portfolioImage: portfolioimage[];
   userSns: sns[];
-  // snsType: typeofsns[];
+  snsType: typeofsns[];
 };
 
 export type SelectProps = {
