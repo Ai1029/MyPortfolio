@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-import { getServerSideProps } from "../pages/api/api";
+
 import { PortfolioProps } from "../../types/types";
 import { useRouter } from "next/router";
 import { Box, Grid, TextField, Button } from "@mui/material";
@@ -171,5 +171,4 @@ const UserPortfolioCreate: FC<PortfolioProps> = ({ userPortfolio }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserPortfolioCreate;

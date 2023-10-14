@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-import { getServerSideProps } from "../pages/api/api";
+
 import { SkillProps } from "../../types/types";
 import { useRouter } from "next/router";
 import {
@@ -231,5 +231,4 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserSkillEdit;

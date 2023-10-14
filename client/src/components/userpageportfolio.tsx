@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { getServerSideProps } from "../pages/api/api";
+
 import { PortfolioProps } from "../../types/types";
 import {
   Button,
@@ -104,5 +104,4 @@ const UserpagePortfolio: FC<PortfolioProps> = ({ userPortfolio }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserpagePortfolio;

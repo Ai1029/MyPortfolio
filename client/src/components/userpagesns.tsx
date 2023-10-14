@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { getServerSideProps } from "../pages/api/api";
+
 import { SnsProps } from "../../types/types";
 import { Link, Box, Typography, Card, CardContent } from "@mui/material";
 
@@ -67,5 +67,4 @@ const UserpageSns: FC<SnsProps> = ({ userSns }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserpageSns;

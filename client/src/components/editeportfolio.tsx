@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-import { getServerSideProps } from "../pages/api/api";
+
 import { PortfolioProps } from "../../types/types";
 import {
   Box,
@@ -283,5 +283,4 @@ const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserPortfolioEdit;

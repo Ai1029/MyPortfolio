@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
 import UserImageUpload from "./userimage";
-import { getServerSideProps } from "../pages/api/api";
+
 import { UserProps } from "../../types/types";
 import {
   Avatar,
@@ -196,5 +196,4 @@ const UserInfoEdit: FC<UserProps> = ({ userInfo, userImage }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserInfoEdit;

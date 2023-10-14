@@ -1,6 +1,6 @@
 import router, { useRouter } from "next/router";
 import React, { FC, useState, useEffect } from "react";
-import { getServerSideProps } from "../pages/api/api";
+
 import { SkillProps } from "../../types/types";
 import { Box, Typography, Card, CardContent, Grid } from "@mui/material";
 import { PieChart, Pie, Cell, Label } from "recharts";
@@ -138,5 +138,4 @@ const UserpageSkill: FC<SkillProps> = ({ userSkill }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserpageSkill;

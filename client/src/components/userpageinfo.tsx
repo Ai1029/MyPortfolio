@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { getServerSideProps } from "../pages/api/api";
+
 import { UserProps } from "../../types/types";
 import { Avatar, Stack, Box, Typography } from "@mui/material";
 import "react-vertical-timeline-component/style.min.css";
@@ -56,5 +56,4 @@ const UserpageInfo: FC<UserProps> = ({ userInfo, userImage }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserpageInfo;

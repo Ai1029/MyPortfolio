@@ -1,6 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-import { getServerSideProps } from "../pages/api/api";
+
 import { SnsProps } from "../../types/types";
 import { useRouter } from "next/router";
 import { Box, Grid, TextField, Button, MenuItem } from "@mui/material";
@@ -130,5 +130,4 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserSnsEdit;

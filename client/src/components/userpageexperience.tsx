@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-import { getServerSideProps } from "../pages/api/api";
+
 import styles from "../pages/styles/Home.module.css";
 import { ExperienceProps } from "../../types/types";
 import { Box, Typography } from "@mui/material";
@@ -110,5 +110,4 @@ const UserpageExperience: FC<ExperienceProps> = ({ userExperience }) => {
   );
 };
 
-export { getServerSideProps };
 export default UserpageExperience;
