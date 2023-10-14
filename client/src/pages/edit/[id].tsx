@@ -10,7 +10,7 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-// import { getServerSideProps } from "../api/api";
+
 import { Props, SelectProps } from "../../../types/types";
 import UserInfoEdit from "../../components/edituser";
 import UserSkillEdit from "../../components/editskill";

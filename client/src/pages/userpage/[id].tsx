@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { FC, useEffect, useState } from "react";
 import { signOut, onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../../firebase/firebase";
-// import { getServerSideProps } from "../api/api";
+
 import { Props } from "../../../types/types";
 import {
   Toolbar,
