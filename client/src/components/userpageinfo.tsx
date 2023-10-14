@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-import { UserProps } from "../../types/types";
+import { Props } from "../../types/types";
 import { Avatar, Stack, Box, Typography } from "@mui/material";
 import "react-vertical-timeline-component/style.min.css";
 
-const UserpageInfo: FC<UserProps> = ({ userInfo, userImage }) => {
+const UserpageInfo: FC<Props> = ({ userInfo }) => {
   const router = useRouter();
   console.log("userInfo2", userInfo);
 
@@ -23,11 +23,11 @@ const UserpageInfo: FC<UserProps> = ({ userInfo, userImage }) => {
         minWidth: "300px",
       }}
     >
-      {userImage && (
+      {userInfo.image && (
         <Stack direction="row" spacing={2} marginBottom={3}>
           <Avatar
             alt="自分の写真"
-            src={userImage.url}
+            src={userInfo.image.url}
             sx={{ width: 170, height: 170 }}
           />
         </Stack>

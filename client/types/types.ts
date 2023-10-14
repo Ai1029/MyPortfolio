@@ -5,6 +5,11 @@ export type user = {
   hobby?: string;
   email: string;
   uid: string;
+  image: userimage;
+  skill: skill[];
+  experience: experience[];
+  portfolio: portfolio[];
+  sns: sns[];
 };
 
 export type userimage = {
@@ -117,17 +122,17 @@ export type typeofsns = {
 
 export type Props = {
   userInfo: user;
-  userImage: userimage;
-  userSkill: skill[];
-  skillLevel: skilllevel[];
-  userExperience: experience[];
-  experienceCategory: experienceCategory[];
-  year: year[];
-  month: month[];
-  userPortfolio: portfolio[];
-  portfolioImage: portfolioimage[];
-  userSns: sns[];
-  snsType: typeofsns[];
+  // userImage: userimage;
+  // userSkill: skill[];
+  // skillLevel: skilllevel[];
+  // userExperience: experience[];
+  // experienceCategory: experienceCategory[];
+  // year: year[];
+  // month: month[];
+  // userPortfolio: portfolio[];
+  // portfolioImage: portfolioimage[];
+  // userSns: sns[];
+  // snsType: typeofsns[];
 };
 
 export type SelectProps = {

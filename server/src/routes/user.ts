@@ -46,6 +46,13 @@ router.get("/:id", async (req: Request, res: Response) => {
       where: {
         id: id,
       },
+      include: {
+        image: true,
+        skill: true,
+        experience: true,
+        portfolio: true,
+        sns: true,
+      },
     });
     res.json(user);
     if (!user) {

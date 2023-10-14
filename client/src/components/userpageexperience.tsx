@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { FC } from "react";
 
 import styles from "../pages/styles/Home.module.css";
-import { ExperienceProps } from "../../types/types";
+import { Props } from "../../types/types";
 import { Box, Typography } from "@mui/material";
 import {
   VerticalTimeline,
@@ -12,7 +12,7 @@ import "react-vertical-timeline-component/style.min.css";
 import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 
-const UserpageExperience: FC<ExperienceProps> = ({ userExperience }) => {
+const UserpageExperience: FC<Props> = ({ userInfo }) => {
   const router = useRouter();
 
   return (
@@ -30,9 +30,9 @@ const UserpageExperience: FC<ExperienceProps> = ({ userExperience }) => {
         Experience
       </Typography>
 
-      {userExperience && userExperience.length > 0 ? (
+      {userInfo.experience && userInfo.experience.length > 0 ? (
         <VerticalTimeline>
-          {userExperience.map((experience) => (
+          {userInfo.experience.map((experience) => (
             <VerticalTimelineElement
               key={experience.id}
               style={{

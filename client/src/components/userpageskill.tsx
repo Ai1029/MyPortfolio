@@ -1,13 +1,13 @@
-import router, { useRouter } from "next/router";
-import React, { FC, useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import React, { FC } from "react";
 
-import { SkillProps } from "../../types/types";
-import { Box, Typography, Card, CardContent, Grid } from "@mui/material";
+import { Props } from "../../types/types";
+import { Box, Typography, Card, CardContent } from "@mui/material";
 import { PieChart, Pie, Cell, Label } from "recharts";
 import "react-vertical-timeline-component/style.min.css";
 import dynamic from "next/dynamic";
 
-const UserpageSkill: FC<SkillProps> = ({ userSkill }) => {
+const UserpageSkill: FC<Props> = ({ userInfo }) => {
   const router = useRouter();
 
   // このコードでprevent hydration warningsを回避できる
@@ -44,8 +44,8 @@ const UserpageSkill: FC<SkillProps> = ({ userSkill }) => {
             justifyContent: "center", // カードを中央に配置
           }}
         >
-          {userSkill && userSkill.length > 0 ? (
-            userSkill.map((skill) => (
+          {userInfo.skill && userInfo.skill.length > 0 ? (
+            userInfo.skill.map((skill) => (
               <>
                 <Card
                   key={skill.id}

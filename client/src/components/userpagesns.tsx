@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-import { SnsProps } from "../../types/types";
+import { Props } from "../../types/types";
 import { Link, Box, Typography, Card, CardContent } from "@mui/material";
 
 import "react-vertical-timeline-component/style.min.css";
 
-const UserpageSns: FC<SnsProps> = ({ userSns }) => {
+const UserpageSns: FC<Props> = ({ userInfo }) => {
   const router = useRouter();
 
   return (
@@ -31,8 +31,8 @@ const UserpageSns: FC<SnsProps> = ({ userSns }) => {
           justifyContent: "center", // カードを中央に配置
         }}
       >
-        {userSns && userSns.length > 0 ? (
-          userSns.map((sns, index) => (
+        {userInfo.sns && userInfo.sns.length > 0 ? (
+          userInfo.sns.map((sns, index) => (
             <>
               <Link href={sns.url} variant="body2" underline="none">
                 <Card

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
-import { PortfolioProps } from "../../types/types";
+import { Props } from "../../types/types";
 import {
   Button,
   Box,
@@ -14,7 +14,7 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import LinkIcon from "@mui/icons-material/Link";
 
-const UserpagePortfolio: FC<PortfolioProps> = ({ userPortfolio }) => {
+const UserpagePortfolio: FC<Props> = ({ userInfo }) => {
   const router = useRouter();
 
   return (
@@ -40,8 +40,8 @@ const UserpagePortfolio: FC<PortfolioProps> = ({ userPortfolio }) => {
           justifyContent: "center", // カードを中央に配置
         }}
       >
-        {userPortfolio && userPortfolio.length > 0 ? (
-          userPortfolio.map((portfolio) => (
+        {userInfo.portfolio && userInfo.portfolio.length > 0 ? (
+          userInfo.portfolio.map((portfolio) => (
             <>
               <Card
                 key={portfolio.id}
