@@ -1,7 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { ExperienceProps } from "../../types/types";
+import { Props, SelectProps } from "../../types/types";
 import { useRouter } from "next/router";
 import {
   Box,
@@ -14,8 +13,8 @@ import {
   Alert,
 } from "@mui/material";
 
-const UserExperienceEdit: FC<ExperienceProps> = ({
-  userExperience,
+const UserExperienceEdit: FC<Props & SelectProps> = ({
+  userInfo,
   experienceCategory,
   year,
   month,
@@ -23,7 +22,9 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
   const router = useRouter();
   const { id } = router.query;
 
-  const [editUserExperience, setEditUserExperience] = useState(userExperience);
+  const [editUserExperience, setEditUserExperience] = useState(
+    userInfo.experience
+  );
   const [editExperienceCategory, setEditExperienceCategory] =
     useState(experienceCategory);
   const [editYear, setEditYear] = useState(year);
@@ -41,7 +42,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
     setEditUserExperience((prevExperience) => {
       if (!prevExperience) {
         console.error("experienceデータがありません");
-        return;
+        return prevExperience;
       }
       const updatedElements = prevExperience.map((element) => {
         if (element.id === id) {
@@ -64,7 +65,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
     setEditUserExperience((prevExperience) => {
       if (!prevExperience) {
         console.error("experienceデータがありません");
-        return;
+        return prevExperience;
       }
       const updatedElements = prevExperience.map((element) => {
         if (element.id === id) {
@@ -90,7 +91,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
     setEditUserExperience((prevExperience) => {
       if (!prevExperience) {
         console.error("experienceデータがありません");
-        return;
+        return prevExperience;
       }
       const updatedElements = prevExperience.map((element) => {
         if (element.id === id) {
@@ -117,7 +118,7 @@ const UserExperienceEdit: FC<ExperienceProps> = ({
     setEditUserExperience((prevExperience) => {
       if (!prevExperience) {
         console.error("experienceデータがありません");
-        return;
+        return prevExperience;
       }
       const updatedElements = prevExperience.map((element) => {
         if (element.id === id) {

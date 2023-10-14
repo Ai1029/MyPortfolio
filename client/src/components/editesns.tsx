@@ -1,7 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { SnsProps } from "../../types/types";
+import { Props, SelectProps } from "../../types/types";
 import { useRouter } from "next/router";
 import {
   Box,
@@ -14,11 +13,10 @@ import {
   Alert,
 } from "@mui/material";
 
-const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
+const UserSnsEdit: FC<Props & SelectProps> = ({ userInfo, snsType }) => {
   const router = useRouter();
   const { id } = router.query; //ユーザーID
-
-  const [editUserSns, setEditUserSns] = useState(userSns);
+  const [editUserSns, setEditUserSns] = useState(userInfo.sns);
   const [snsTypes, setSnsTypes] = useState(snsType);
   const [open, setOpen] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -33,7 +31,7 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
     setEditUserSns((prevSnsData) => {
       if (!prevSnsData) {
         console.error("Snsのデータがありません");
-        return;
+        return prevSnsData;
       }
       const updatedElements = prevSnsData.map((element) => {
         if (element.id === id) {
@@ -58,7 +56,7 @@ const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
     setEditUserSns((prevSnsType) => {
       if (!prevSnsType) {
         console.error("snstypeのデータがありません");
-        return;
+        return prevSnsType;
       }
       const updatedElements = prevSnsType.map((element) => {
         if (element.id === id) {

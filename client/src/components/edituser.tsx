@@ -2,7 +2,7 @@ import React, { useState, FC } from "react";
 import axios from "axios";
 import UserImageUpload from "./userimage";
 
-import { UserProps } from "../../types/types";
+import { Props } from "../../types/types";
 import {
   Avatar,
   Stack,
@@ -16,7 +16,7 @@ import {
 import { updateEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 
-const UserInfoEdit: FC<UserProps> = ({ userInfo, userImage }) => {
+const UserInfoEdit: FC<Props> = ({ userInfo }) => {
   const [editUserInfo, setEditUserInfo] = useState(userInfo);
   const [open, setOpen] = useState(false);
   const user = auth.currentUser; //　現在のユーザー
@@ -32,7 +32,7 @@ const UserInfoEdit: FC<UserProps> = ({ userInfo, userImage }) => {
     setEditUserInfo((prevData) => {
       if (!prevData) {
         console.error("ユーザーデータがありません");
-        return;
+        return prevData;
       }
       return {
         ...prevData,
@@ -181,11 +181,11 @@ const UserInfoEdit: FC<UserProps> = ({ userInfo, userImage }) => {
         <Box>
           <h4>アイコンの画像を選択</h4>
           <UserImageUpload />
-          {userImage && (
+          {userInfo.image && (
             <Stack direction="row" spacing={2} marginBottom={3}>
               <Avatar
                 alt="自分の写真"
-                src={userImage.url}
+                src={userInfo.image.url}
                 sx={{ width: 170, height: 170 }}
               />
             </Stack>

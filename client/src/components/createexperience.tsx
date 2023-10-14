@@ -1,12 +1,10 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { ExperienceProps } from "../../types/types";
+import { SelectProps } from "../../types/types";
 import { useRouter } from "next/router";
 import { Box, Grid, TextField, Button, MenuItem } from "@mui/material";
 
-const UserExperienceEdit: FC<ExperienceProps> = ({
-  userExperience,
+const UserExperienceEdit: FC<SelectProps> = ({
   experienceCategory,
   year,
   month,

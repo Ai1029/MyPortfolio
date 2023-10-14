@@ -1,7 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { PortfolioProps } from "../../types/types";
+import { Props } from "../../types/types";
 import {
   Box,
   Grid,
@@ -12,8 +11,10 @@ import {
   Alert,
 } from "@mui/material";
 
-const UserPortfolioEdit: FC<PortfolioProps> = ({ userPortfolio }) => {
-  const [editUserPortfolio, setEditUserPortfolio] = useState(userPortfolio);
+const UserPortfolioEdit: FC<Props> = ({ userInfo }) => {
+  const [editUserPortfolio, setEditUserPortfolio] = useState(
+    userInfo.portfolio
+  );
   const [editfile, setEditFile] = useState<Record<number, File | null>>({}); // portfolioIDをキーする
   const [open, setOpen] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;

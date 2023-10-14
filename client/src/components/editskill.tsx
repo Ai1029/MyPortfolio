@@ -1,7 +1,6 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { SkillProps } from "../../types/types";
+import { Props, SelectProps } from "../../types/types";
 import { useRouter } from "next/router";
 import {
   Box,
@@ -14,11 +13,11 @@ import {
   Alert,
 } from "@mui/material";
 
-const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
+const UserSkillEdit: FC<Props & SelectProps> = ({ userInfo, skillLevel }) => {
   const router = useRouter();
   const { id } = router.query; // ユーザーID
 
-  const [editUserSkill, setEditUserSkill] = useState(userSkill);
+  const [editUserSkill, setEditUserSkill] = useState(userInfo.skill);
   const [skillLevels, setSkillLevels] = useState(skillLevel);
   const [open, setOpen] = useState(false);
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -33,7 +32,7 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
     setEditUserSkill((prevSkillData) => {
       if (!prevSkillData) {
         console.error("スキルデータがありません");
-        return;
+        return prevSkillData;
       }
       const updatedElements = prevSkillData.map((element) => {
         if (element.id === id) {
@@ -56,7 +55,7 @@ const UserSkillEdit: FC<SkillProps> = ({ userSkill, skillLevel }) => {
     setEditUserSkill((prevSkill) => {
       if (!prevSkill) {
         console.error("スキルデータがありません");
-        return;
+        return prevSkill;
       }
       const updatedElements = prevSkill.map((element) => {
         if (element.id === id) {

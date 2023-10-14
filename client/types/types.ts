@@ -136,11 +136,11 @@ export type Props = {
 };
 
 export type SelectProps = {
-  skillLevel: skilllevel[];
-  experienceCategory: experienceCategory[];
-  year: year[];
-  month: month[];
-  snsType: typeofsns[];
+  skillLevel?: skilllevel[];
+  experienceCategory?: experienceCategory[];
+  year?: year[];
+  month?: month[];
+  snsType?: typeofsns[];
 };
 
 export type UserProps = {

@@ -1,11 +1,10 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { SnsProps } from "../../types/types";
+import { SelectProps } from "../../types/types";
 import { useRouter } from "next/router";
 import { Box, Grid, TextField, Button, MenuItem } from "@mui/material";
 
-const UserSnsEdit: FC<SnsProps> = ({ userSns, snsType }) => {
+const UserSnsEdit: FC<SelectProps> = ({ snsType }) => {
   const router = useRouter();
   const { id } = router.query; //ユーザーID
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;

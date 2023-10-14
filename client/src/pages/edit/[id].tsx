@@ -10,7 +10,6 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-
 import { Props, SelectProps } from "../../../types/types";
 import UserInfoEdit from "../../components/edituser";
 import UserSkillEdit from "../../components/editskill";
@@ -27,15 +26,15 @@ import { ParsedUrlQuery } from "querystring";
 
 const UserEdit: FC<Props & SelectProps> = ({
   userInfo,
-  userImage,
-  userSkill,
+  // userImage,
+  // userSkill,
   skillLevel,
-  userExperience,
+  // userExperience,
   experienceCategory,
   year,
   month,
-  userPortfolio,
-  userSns,
+  // userPortfolio,
+  // userSns,
   snsType,
 }) => {
   const defaultTheme = createTheme();
@@ -63,25 +62,24 @@ const UserEdit: FC<Props & SelectProps> = ({
             </Toolbar>
           </AppBar>
 
-          <UserInfoEdit userInfo={userInfo} userImage={userImage} />
-          <UserSkillEdit userSkill={userSkill} skillLevel={skillLevel} />
-          <UserSkillCreate userSkill={userSkill} skillLevel={skillLevel} />
-          <UserPortfolioEdit userPortfolio={userPortfolio} />
-          <UserPortfolioCreate userPortfolio={userPortfolio} />
+          <UserInfoEdit userInfo={userInfo} />
+          <UserSkillEdit userInfo={userInfo} skillLevel={skillLevel} />
+          <UserSkillCreate skillLevel={skillLevel} />
+          <UserPortfolioEdit userInfo={userInfo} />
+          <UserPortfolioCreate />
           <UserExperienceEdit
-            userExperience={userExperience}
+            userInfo={userInfo}
             experienceCategory={experienceCategory}
             year={year}
             month={month}
           />
           <UserExperienceCreate
-            userExperience={userExperience}
             experienceCategory={experienceCategory}
             year={year}
             month={month}
           />
-          <UserSnsEdit userSns={userSns} snsType={snsType} />
-          <UserSnsCreate userSns={userSns} snsType={snsType} />
+          <UserSnsEdit userInfo={userInfo} snsType={snsType} />
+          <UserSnsCreate snsType={snsType} />
         </Box>
       </Grid>
     </ThemeProvider>
@@ -103,15 +101,15 @@ export const getServerSideProps: GetServerSideProps = async ({
       return {
         props: {
           userInfo: null,
-          userImage: null,
-          userSkill: null,
+          // userImage: null,
+          // userSkill: null,
           skillLevel: null,
-          userExperience: null,
+          // userExperience: null,
           experienceCategory: null,
           year: null,
           month: null,
-          userPortfolio: null,
-          userSns: null,
+          // userPortfolio: null,
+          // userSns: null,
           snsType: null,
         },
       };
@@ -119,42 +117,42 @@ export const getServerSideProps: GetServerSideProps = async ({
 
     const [
       userRes,
-      userImageRes,
-      skillRes,
+      // userImageRes,
+      // skillRes,
       skilllevelRes,
-      experienceRes,
+      // experienceRes,
       experienceCategoryRes,
       yearRes,
       monthRes,
-      portfolioRes,
-      snsRes,
+      // portfolioRes,
+      // snsRes,
       snstypeRes,
     ] = await Promise.all([
       axios.get(`${apiURL}/api/v1/user/${params.id}`),
-      axios.get(`${apiURL}/api/v1/userimg/${params.id}`),
-      axios.get(`${apiURL}/api/v1/skill/${params.id}`),
+      // axios.get(`${apiURL}/api/v1/userimg/${params.id}`),
+      // axios.get(`${apiURL}/api/v1/skill/${params.id}`),
       axios.get(`${apiURL}/api/v1/skilllevel`),
-      axios.get(`${apiURL}/api/v1/experience/${params.id}`),
+      // axios.get(`${apiURL}/api/v1/experience/${params.id}`),
       axios.get(`${apiURL}/api/v1/experiencecategory`),
       axios.get(`${apiURL}/api/v1/year`),
       axios.get(`${apiURL}/api/v1/month`),
-      axios.get(`${apiURL}/api/v1/portfolio/${params.id}`),
-      axios.get(`${apiURL}/api/v1/sns/${params.id}`),
+      // axios.get(`${apiURL}/api/v1/portfolio/${params.id}`),
+      // axios.get(`${apiURL}/api/v1/sns/${params.id}`),
       axios.get(`${apiURL}/api/v1/typeofsns`),
     ]);
 
     return {
       props: {
         userInfo: userRes.data,
-        userImage: userImageRes.data,
-        userSkill: skillRes.data,
+        // userImage: userImageRes.data,
+        // userSkill: skillRes.data,
         skillLevel: skilllevelRes.data,
-        userExperience: experienceRes.data,
+        // userExperience: experienceRes.data,
         experienceCategory: experienceCategoryRes.data,
         year: yearRes.data,
         month: monthRes.data,
-        userPortfolio: portfolioRes.data,
-        userSns: snsRes.data,
+        // userPortfolio: portfolioRes.data,
+        // userSns: snsRes.data,
         snsType: snstypeRes.data,
       },
     };
@@ -163,15 +161,15 @@ export const getServerSideProps: GetServerSideProps = async ({
     return {
       props: {
         userInfo: null,
-        userImage: null,
-        userSkill: null,
+        // userImage: null,
+        // userSkill: null,
         skillLevel: null,
-        userExperience: null,
+        // userExperience: null,
         experienceCategory: null,
         year: null,
         month: null,
-        userPortfolio: null,
-        userSns: null,
+        // userPortfolio: null,
+        // userSns: null,
         snsType: null,
       },
     };

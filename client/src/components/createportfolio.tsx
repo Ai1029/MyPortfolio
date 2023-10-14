@@ -1,11 +1,9 @@
 import React, { useState, FC } from "react";
 import axios from "axios";
-
-import { PortfolioProps } from "../../types/types";
 import { useRouter } from "next/router";
 import { Box, Grid, TextField, Button } from "@mui/material";
 
-const UserPortfolioCreate: FC<PortfolioProps> = ({ userPortfolio }) => {
+const UserPortfolioCreate: FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
