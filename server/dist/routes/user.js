@@ -59,9 +59,36 @@ router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             },
             include: {
                 image: true,
-                skill: true,
-                experience: true,
-                portfolio: true,
+                skill: {
+                    include: {
+                        skilllevel: true,
+                    },
+                    orderBy: [
+                        {
+                            name: "asc",
+                        },
+                    ],
+                },
+                experience: {
+                    include: {
+                        experienceStartYear: true,
+                        experienceStartMonth: true,
+                        experienceFinishYear: true,
+                        experienceFinishMonth: true,
+                    },
+                    orderBy: [
+                        {
+                            experienceFinishYear: {
+                                year: "desc",
+                            },
+                        },
+                    ],
+                },
+                portfolio: {
+                    include: {
+                        image: true,
+                    },
+                },
                 sns: true,
             },
         });

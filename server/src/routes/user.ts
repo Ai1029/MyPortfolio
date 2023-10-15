@@ -48,10 +48,41 @@ router.get("/:id", async (req: Request, res: Response) => {
       },
       include: {
         image: true,
-        skill: true,
-        experience: true,
-        portfolio: true,
-        sns: true,
+        skill: {
+          include: {
+            skilllevel: true,
+          },
+          orderBy: [
+            {
+              name: "asc",
+            },
+          ],
+        },
+        experience: {
+          include: {
+            experienceStartYear: true,
+            experienceStartMonth: true,
+            experienceFinishYear: true,
+            experienceFinishMonth: true,
+          },
+          orderBy: [
+            {
+              experienceFinishYear: {
+                year: "desc",
+              },
+            },
+          ],
+        },
+        portfolio: {
+          include: {
+            image: true,
+          },
+        },
+        sns: {
+          include: {
+            typeofSNS: true,
+          },
+        },
       },
     });
     res.json(user);
