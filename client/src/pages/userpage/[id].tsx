@@ -29,7 +29,7 @@ const Userpage: FC<Props> = ({ userInfo }) => {
   const [user, setUser] = useState<User | null>(null);
   const appUrl = process.env.NEXT_PUBLIC_APP_SITE_URL;
 
-  // ログイン状態を確認
+  // firebaseでログイン状態を確認
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
