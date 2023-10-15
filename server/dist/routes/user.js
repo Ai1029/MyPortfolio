@@ -57,24 +57,6 @@ router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             where: {
                 id: id,
             },
-            include: {
-                image: true,
-                experience: {
-                    include: {
-                        experienceStartYear: true,
-                        experienceStartMonth: true,
-                        experienceFinishYear: true,
-                        experienceFinishMonth: true,
-                    },
-                    orderBy: [
-                        {
-                            experienceFinishYear: {
-                                year: "desc",
-                            },
-                        },
-                    ],
-                },
-            },
         });
         if (!user) {
             return res.status(404).send("ユーザーは見つかりませんでした");
