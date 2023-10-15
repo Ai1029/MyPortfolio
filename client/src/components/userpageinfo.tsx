@@ -23,7 +23,7 @@ const UserpageInfo: FC<Props> = ({ userInfo }) => {
         minWidth: "300px",
       }}
     >
-      {userInfo.image ? (
+      {/* {userInfo.image ? (
         <Stack direction="row" spacing={2} marginBottom={3}>
           <Avatar
             alt="自分の写真"
@@ -39,7 +39,7 @@ const UserpageInfo: FC<Props> = ({ userInfo }) => {
             sx={{ width: 170, height: 170 }}
           />
         </Stack>
-      )}
+      )} */}
       {userInfo && (
         <>
           <Typography variant="h5" sx={{ fontWeight: "bold" }} marginBottom={3}>
