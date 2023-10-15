@@ -57,6 +57,9 @@ router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             where: {
                 id: id,
             },
+            include: {
+                image: true,
+            },
         });
         if (!user) {
             return res.status(404).send("ユーザーは見つかりませんでした");

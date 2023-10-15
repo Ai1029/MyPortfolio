@@ -46,6 +46,9 @@ router.get("/:id", async (req: Request, res: Response) => {
       where: {
         id: id,
       },
+      include: {
+        image: true,
+      },
     });
     if (!user) {
       return res.status(404).send("ユーザーは見つかりませんでした");
