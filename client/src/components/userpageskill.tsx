@@ -44,7 +44,7 @@ const UserpageSkill: FC<Props> = ({ userInfo }) => {
             justifyContent: "center", // カードを中央に配置
           }}
         >
-          {userInfo.skill && userInfo.skill.length > 0 ? (
+          {userInfo.skill ? (
             userInfo.skill.map((skill) => (
               <Card
                 key={skill.id}

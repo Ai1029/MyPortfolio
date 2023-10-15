@@ -31,7 +31,7 @@ const UserpageSns: FC<Props> = ({ userInfo }) => {
           justifyContent: "center", // カードを中央に配置
         }}
       >
-        {userInfo.sns && userInfo.sns.length > 0 ? (
+        {userInfo.sns ? (
           userInfo.sns.map((sns, index) => (
             <>
               <Link href={sns.url} variant="body2" underline="none">

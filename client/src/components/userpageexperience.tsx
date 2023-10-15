@@ -29,7 +29,7 @@ const UserpageExperience: FC<Props> = ({ userInfo }) => {
         Experience
       </Typography>
 
-      {userInfo.experience && userInfo.experience.length > 0 ? (
+      {userInfo.experience ? (
         <VerticalTimeline>
           {userInfo.experience.map((experience) => (
             <VerticalTimelineElement
