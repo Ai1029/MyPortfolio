@@ -97,7 +97,7 @@ const Userpage: FC<Props> = ({ userInfo }) => {
           <UserpageInfo userInfo={userInfo} />
           <UserpageSkill />
           <UserpagePortfolio />
-          <UserpageExperience userInfo={userInfo} />
+          <UserpageExperience />
           <UserpageSns />
         </Box>
       </Grid>

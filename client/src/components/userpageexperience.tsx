@@ -12,24 +12,24 @@ import WorkIcon from "@mui/icons-material/Work";
 import SchoolIcon from "@mui/icons-material/School";
 import axios from "axios";
 
-const UserpageExperience: FC<Props> = ({ userInfo }) => {
+const UserpageExperience: FC = () => {
   const router = useRouter();
-  // const id = router.query.id;
-  // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  // const [userExperience, setUserExperience] = useState<experience[]>([]);
-  // useEffect(() => {
-  //   //APIからuserのPortfolioデータを取得する関数を定義
-  //   const fetchAllExperiences = async () => {
-  //     try {
-  //       const res = await axios.get(`${apiUrl}/api/v1/experience/${id}`);
-  //       console.log("res", res);
-  //       setUserExperience(res.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchAllExperiences();
-  // }, []);
+  const id = router.query.id;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const [userExperience, setUserExperience] = useState<experience[]>([]);
+  useEffect(() => {
+    //APIからuserのPortfolioデータを取得する関数を定義
+    const fetchAllExperiences = async () => {
+      try {
+        const res = await axios.get(`${apiUrl}/api/v1/experience/${id}`);
+        console.log("res", res);
+        setUserExperience(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchAllExperiences();
+  }, []);
 
   return (
     <Box
@@ -46,9 +46,9 @@ const UserpageExperience: FC<Props> = ({ userInfo }) => {
         Experience
       </Typography>
 
-      {userInfo.experience ? (
+      {userExperience ? (
         <VerticalTimeline>
-          {userInfo.experience.map((experience) => (
+          {userExperience.map((experience) => (
             <VerticalTimelineElement
               key={experience.id}
               style={{
