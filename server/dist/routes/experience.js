@@ -59,19 +59,19 @@ router.get("/:userid", (req, res) => __awaiter(void 0, void 0, void 0, function*
             where: {
                 userID: userid,
             },
-            // include: {
-            //   experienceStartYear: true,
-            //   experienceStartMonth: true,
-            //   experienceFinishYear: true,
-            //   experienceFinishMonth: true,
-            // },
-            // orderBy: [
-            //   {
-            //     experienceFinishYear: {
-            //       year: "desc",
-            //     },
-            //   },
-            // ],
+            include: {
+                experienceStartYear: true,
+                experienceStartMonth: true,
+                experienceFinishYear: true,
+                experienceFinishMonth: true,
+            },
+            orderBy: [
+                {
+                    experienceFinishYear: {
+                        year: "desc",
+                    },
+                },
+            ],
         });
         res.status(200).json(experience);
     }
