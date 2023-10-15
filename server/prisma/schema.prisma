@@ -37,6 +37,9 @@ model Skill {
   userID       Int
   skilllevel   SkillLevel @relation(fields: [skilllevelID], references: [id])
   skilllevelID Int
+
+  @@index([userID])
+  @@index([skilllevelID])
 }
 
 model SkillLevel {
@@ -64,6 +67,13 @@ model Experience {
   startmonthID            Int
   experienceFinishMonth Month              @relation("finishMonth", fields: [finishmonthID], references: [id])
   finishmonthID           Int
+
+  @@index([experiencecategoryID])
+  @@index([userID])
+  @@index([startyearID])
+  @@index([finishyearID])
+  @@index([startmonthID])
+  @@index([finishmonthID])
 }
 
 model ExperienceCategory {
@@ -94,6 +104,8 @@ model Portfolio {
   user        User            @relation(fields: [userID], references: [id])
   userID      Int
   image       PortfolioImage?
+
+  @@index([userID])
 }
 
 model SNS {
@@ -103,6 +115,9 @@ model SNS {
   userID      Int
   typeofSNS   TypeofSNS @relation(fields: [typeofSNSID], references: [id])
   typeofSNSID Int
+
+  @@index([typeofSNSID])
+  @@index([userID])
 }
 
 model TypeofSNS {
