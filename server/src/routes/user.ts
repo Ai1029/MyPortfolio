@@ -20,23 +20,6 @@ router.post("/", async (req: Request, res: Response) => {
         introduction,
         hobby,
       },
-      include: {
-        experience: {
-          include: {
-            experienceStartYear: true,
-            experienceStartMonth: true,
-            experienceFinishYear: true,
-            experienceFinishMonth: true,
-          },
-          orderBy: [
-            {
-              experienceFinishYear: {
-                year: "desc",
-              },
-            },
-          ],
-        },
-      },
     });
     return res.json(user);
   } catch (err) {
@@ -65,6 +48,21 @@ router.get("/:id", async (req: Request, res: Response) => {
       },
       include: {
         image: true,
+        experience: {
+          include: {
+            experienceStartYear: true,
+            experienceStartMonth: true,
+            experienceFinishYear: true,
+            experienceFinishMonth: true,
+          },
+          orderBy: [
+            {
+              experienceFinishYear: {
+                year: "desc",
+              },
+            },
+          ],
+        },
       },
     });
     if (!user) {
