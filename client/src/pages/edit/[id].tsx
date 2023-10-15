@@ -10,27 +10,21 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-import { Props, SelectProps } from "../../../types/types";
+import { Props } from "../../../types/types";
 import UserInfoEdit from "../../components/edituser";
-// import UserSkillEdit from "../../components/editskill";
-// import UserSkillCreate from "../../components/createskill";
-// import UserExperienceEdit from "../../components/editexperience";
-// import UserExperienceCreate from "../../components/createexperience";
-// import UserPortfolioEdit from "../../components/editeportfolio";
-// import UserPortfolioCreate from "../../components/createportfolio";
-// import UserSnsEdit from "../../components/editesns";
-// import UserSnsCreate from "../../components/createsns";
+import UserSkillEdit from "../../components/editskill";
+import UserSkillCreate from "../../components/createskill";
+import UserExperienceEdit from "../../components/editexperience";
+import UserExperienceCreate from "../../components/createexperience";
+import UserPortfolioEdit from "../../components/editeportfolio";
+import UserPortfolioCreate from "../../components/createportfolio";
+import UserSnsEdit from "../../components/editesns";
+import UserSnsCreate from "../../components/createsns";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import axios from "axios";
 
-const UserEdit: FC<Props & SelectProps> = ({
-  userInfo,
-  experienceCategory,
-  year,
-  month,
-  snsType,
-}) => {
+const UserEdit: FC<Props> = ({ userInfo }) => {
   const defaultTheme = createTheme();
 
   return (
@@ -55,23 +49,14 @@ const UserEdit: FC<Props & SelectProps> = ({
           </AppBar>
 
           <UserInfoEdit userInfo={userInfo} />
-          {/* <UserSkillEdit userInfo={userInfo} />
+          <UserSkillEdit />
           <UserSkillCreate />
-          <UserPortfolioEdit userInfo={userInfo} />
+          <UserPortfolioEdit />
           <UserPortfolioCreate />
-          <UserExperienceEdit
-            userInfo={userInfo}
-            experienceCategory={experienceCategory}
-            year={year}
-            month={month}
-          />
-          <UserExperienceCreate
-            experienceCategory={experienceCategory}
-            year={year}
-            month={month}
-          />
-          <UserSnsEdit userInfo={userInfo} snsType={snsType} />
-          <UserSnsCreate snsType={snsType} /> */}
+          <UserExperienceEdit />
+          <UserExperienceCreate />
+          <UserSnsEdit />
+          <UserSnsCreate />
         </Box>
       </Grid>
     </ThemeProvider>
@@ -92,39 +77,17 @@ export const getServerSideProps: GetServerSideProps = async ({
       return {
         props: {
           userInfo: null,
-          skillLevel: null,
-          experienceCategory: null,
-          year: null,
-          month: null,
-          snsType: null,
         },
       };
     }
 
-    const [
-      userRes,
-      skilllevelRes,
-      experienceCategoryRes,
-      yearRes,
-      monthRes,
-      snstypeRes,
-    ] = await Promise.all([
+    const [userRes] = await Promise.all([
       axios.get(`${apiURL}/api/v1/user/${params.id}`),
-      axios.get(`${apiURL}/api/v1/skilllevel`),
-      axios.get(`${apiURL}/api/v1/experiencecategory`),
-      axios.get(`${apiURL}/api/v1/year`),
-      axios.get(`${apiURL}/api/v1/month`),
-      axios.get(`${apiURL}/api/v1/typeofsns`),
     ]);
 
     return {
       props: {
         userInfo: userRes.data,
-        skillLevel: skilllevelRes.data,
-        experienceCategory: experienceCategoryRes.data,
-        year: yearRes.data,
-        month: monthRes.data,
-        snsType: snstypeRes.data,
       },
     };
   } catch (error) {
@@ -132,11 +95,6 @@ export const getServerSideProps: GetServerSideProps = async ({
     return {
       props: {
         userInfo: null,
-        skillLevel: null,
-        experienceCategory: null,
-        year: null,
-        month: null,
-        snsType: null,
       },
     };
   }
