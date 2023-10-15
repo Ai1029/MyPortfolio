@@ -16,10 +16,10 @@ import {
 } from "@mui/material";
 import "react-vertical-timeline-component/style.min.css";
 import UserpageInfo from "../../components/userpageinfo";
-import UserpageSkill from "../../components/userpageskill";
-import UserpagePortfolio from "../../components/userpageportfolio";
-import UserpageExperience from "../../components/userpageexperience";
-import UserpageSns from "../../components/userpagesns";
+// import UserpageSkill from "../../components/userpageskill";
+// import UserpagePortfolio from "../../components/userpageportfolio";
+// import UserpageExperience from "../../components/userpageexperience";
+// import UserpageSns from "../../components/userpagesns";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import axios from "axios";
@@ -95,10 +95,10 @@ const Userpage: FC<Props> = ({ userInfo }) => {
             )}
           </AppBar>
           <UserpageInfo userInfo={userInfo} />
-          <UserpageSkill userInfo={userInfo} />
+          {/* <UserpageSkill userInfo={userInfo} />
           <UserpagePortfolio userInfo={userInfo} />
           <UserpageExperience userInfo={userInfo} />
-          <UserpageSns userInfo={userInfo} />
+          <UserpageSns userInfo={userInfo} /> */}
         </Box>
       </Grid>
     </ThemeProvider>
