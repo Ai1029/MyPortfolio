@@ -12,14 +12,14 @@ import {
 } from "@mui/material";
 import { Props, SelectProps } from "../../../types/types";
 import UserInfoEdit from "../../components/edituser";
-import UserSkillEdit from "../../components/editskill";
-import UserSkillCreate from "../../components/createskill";
-import UserExperienceEdit from "../../components/editexperience";
-import UserExperienceCreate from "../../components/createexperience";
-import UserPortfolioEdit from "../../components/editeportfolio";
-import UserPortfolioCreate from "../../components/createportfolio";
-import UserSnsEdit from "../../components/editesns";
-import UserSnsCreate from "../../components/createsns";
+// import UserSkillEdit from "../../components/editskill";
+// import UserSkillCreate from "../../components/createskill";
+// import UserExperienceEdit from "../../components/editexperience";
+// import UserExperienceCreate from "../../components/createexperience";
+// import UserPortfolioEdit from "../../components/editeportfolio";
+// import UserPortfolioCreate from "../../components/createportfolio";
+// import UserSnsEdit from "../../components/editesns";
+// import UserSnsCreate from "../../components/createsns";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import axios from "axios";
@@ -55,7 +55,7 @@ const UserEdit: FC<Props & SelectProps> = ({
           </AppBar>
 
           <UserInfoEdit userInfo={userInfo} />
-          <UserSkillEdit userInfo={userInfo} />
+          {/* <UserSkillEdit userInfo={userInfo} />
           <UserSkillCreate />
           <UserPortfolioEdit userInfo={userInfo} />
           <UserPortfolioCreate />
@@ -71,7 +71,7 @@ const UserEdit: FC<Props & SelectProps> = ({
             month={month}
           />
           <UserSnsEdit userInfo={userInfo} snsType={snsType} />
-          <UserSnsCreate snsType={snsType} />
+          <UserSnsCreate snsType={snsType} /> */}
         </Box>
       </Grid>
     </ThemeProvider>
