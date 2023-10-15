@@ -42,7 +42,7 @@ router.get("/", async (req: Request, res: Response) => {
 router.get("/:id", async (req: Request, res: Response) => {
   const id = Number(req.params.id);
   try {
-    const user = await prisma.user.findMany({
+    const user = await prisma.user.findUnique({
       where: {
         id: id,
       },
