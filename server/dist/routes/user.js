@@ -31,6 +31,23 @@ router.post("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 introduction,
                 hobby,
             },
+            include: {
+                experience: {
+                    include: {
+                        experienceStartYear: true,
+                        experienceStartMonth: true,
+                        experienceFinishYear: true,
+                        experienceFinishMonth: true,
+                    },
+                    orderBy: [
+                        {
+                            experienceFinishYear: {
+                                year: "desc",
+                            },
+                        },
+                    ],
+                },
+            },
         });
         return res.json(user);
     }

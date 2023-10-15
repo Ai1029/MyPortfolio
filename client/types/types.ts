@@ -6,6 +6,7 @@ export type user = {
   email: string;
   uid: string;
   image: userimage;
+  experience: experience[];
 };
 
 export type userimage = {
