@@ -19,7 +19,7 @@ const UserSkillEdit: FC = () => {
     //APIからSkillLevelデータを取得する関数を定義
     const fetchAllSkillLevels = async () => {
       try {
-        const res = await axios.get(`${apiUrl}/api/v1/list`);
+        const res = await axios.get(`${apiUrl}/api/v1/skilllevel`);
         console.log("res", res);
         setSkillLevels(res.data);
       } catch (error) {

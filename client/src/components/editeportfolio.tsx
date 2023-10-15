@@ -246,7 +246,11 @@ const UserPortfolioEdit: FC<Props> = ({ userInfo }) => {
                     <img
                       src={portfolio.image.url}
                       width={270}
-                      style={{ marginTop: "5px" }}
+                      style={{
+                        marginTop: "5px",
+                        objectFit: "cover",
+                        height: "150px",
+                      }}
                     />
                   )}
                 </Grid>

@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React, { FC } from "react";
-
 import styles from "../pages/styles/Home.module.css";
 import { Props } from "../../types/types";
 import { Box, Typography } from "@mui/material";

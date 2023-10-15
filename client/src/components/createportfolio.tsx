@@ -7,7 +7,6 @@ const UserPortfolioCreate: FC = () => {
   const router = useRouter();
   const { id } = router.query;
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
   const [newPortfolio, setNewPortfolio] = useState({
     name: "",
     description: "",

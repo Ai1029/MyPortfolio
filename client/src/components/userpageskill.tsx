@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import { Props } from "../../types/types";
 import { Box, Typography, Card, CardContent } from "@mui/material";
