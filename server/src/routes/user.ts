@@ -85,10 +85,10 @@ router.get("/:id", async (req: Request, res: Response) => {
         },
       },
     });
-    res.json(user);
     if (!user) {
       return res.status(404).send("ユーザーは見つかりませんでした");
     }
+    res.json(user);
   } catch (err) {
     console.log(err);
     return res.status(500).send("サーバーエラーが発生しました");

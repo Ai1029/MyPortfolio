@@ -89,13 +89,17 @@ router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                         image: true,
                     },
                 },
-                sns: true,
+                sns: {
+                    include: {
+                        typeofSNS: true,
+                    },
+                },
             },
         });
-        res.json(user);
         if (!user) {
             return res.status(404).send("ユーザーは見つかりませんでした");
         }
+        res.json(user);
     }
     catch (err) {
         console.log(err);
