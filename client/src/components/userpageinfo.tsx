@@ -23,11 +23,19 @@ const UserpageInfo: FC<Props> = ({ userInfo }) => {
         minWidth: "300px",
       }}
     >
-      {userInfo.image && (
+      {userInfo.image ? (
         <Stack direction="row" spacing={2} marginBottom={3}>
           <Avatar
             alt="自分の写真"
             src={userInfo.image.url}
+            sx={{ width: 170, height: 170 }}
+          />
+        </Stack>
+      ) : (
+        <Stack direction="row" spacing={2} marginBottom={3}>
+          <Avatar
+            alt="自分の写真"
+            src="https://my-portfolio-images-s3.s3.ap-northeast-1.amazonaws.com/userimg/default.png"
             sx={{ width: 170, height: 170 }}
           />
         </Stack>

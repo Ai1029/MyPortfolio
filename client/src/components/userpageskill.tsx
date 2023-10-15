@@ -46,88 +46,86 @@ const UserpageSkill: FC<Props> = ({ userInfo }) => {
         >
           {userInfo.skill && userInfo.skill.length > 0 ? (
             userInfo.skill.map((skill) => (
-              <>
-                <Card
-                  key={skill.id}
-                  sx={{
-                    flex: 1,
-                    maxWidth: "calc(25% - 16px)",
-                    minWidth: "200px",
-                    margin: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center", // 子要素を水平方向に中央揃え
-                  }}
-                >
-                  <CardContent>
-                    <Typography
-                      variant="subtitle1"
-                      sx={{ fontWeight: "bold", textAlign: "center" }}
-                    >
-                      {skill.name}
-                    </Typography>
+              <Card
+                key={skill.id}
+                sx={{
+                  flex: 1,
+                  maxWidth: "calc(25% - 16px)",
+                  minWidth: "200px",
+                  margin: "5px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center", // 子要素を水平方向に中央揃え
+                }}
+              >
+                <CardContent>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ fontWeight: "bold", textAlign: "center" }}
+                  >
+                    {skill.name}
+                  </Typography>
 
-                    <div
-                      style={{
-                        position: "relative",
-                        // width: "130px",
-                        height: "130px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center", // 水平方向の中央揃え
-                      }}
-                    >
-                      <PieChart width={150} height={150}>
-                        <Pie
+                  <div
+                    style={{
+                      position: "relative",
+                      // width: "130px",
+                      height: "130px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center", // 水平方向の中央揃え
+                    }}
+                  >
+                    <PieChart width={150} height={150}>
+                      <Pie
+                        key={`${skill.id}`}
+                        data={[
+                          {
+                            name: skill.skilllevel.level,
+                            value: skill.skilllevel.levelper,
+                          },
+                          {
+                            name: "remaining",
+                            value: skill.skilllevel.levelperleft,
+                          },
+                        ]}
+                        cx={70}
+                        cy={70}
+                        innerRadius={40}
+                        outerRadius={60}
+                        fill="#8884d8"
+                        dataKey="value"
+                        startAngle={90} // 開始角度を90度に設定
+                        endAngle={-270} // 終了角度を-270度に設定 (一番上の位置)
+                      >
+                        {/* Completeのセル */}
+                        <Cell key={`cell-completed`} fill="#958df2" />
+                        {/* Remaining のセル */}
+                        <Cell key={`cell-remaining`} fill="#ccc" />{" "}
+                        <Label
                           key={`${skill.id}`}
-                          data={[
-                            {
-                              name: skill.skilllevel.level,
-                              value: skill.skilllevel.levelper,
-                            },
-                            {
-                              name: "remaining",
-                              value: skill.skilllevel.levelperleft,
-                            },
-                          ]}
-                          cx={70}
-                          cy={70}
-                          innerRadius={40}
-                          outerRadius={60}
-                          fill="#8884d8"
-                          dataKey="value"
-                          startAngle={90} // 開始角度を90度に設定
-                          endAngle={-270} // 終了角度を-270度に設定 (一番上の位置)
-                        >
-                          {/* Completeのセル */}
-                          <Cell key={`cell-completed`} fill="#958df2" />
-                          {/* Remaining のセル */}
-                          <Cell key={`cell-remaining`} fill="#ccc" />{" "}
-                          <Label
-                            key={`${skill.id}`}
-                            value={skill.skilllevel.level} // ラベルの内容を表示する関数を設定
-                            position="center"
-                            fill="black"
-                            style={{
-                              fontSize: "12px",
-                              fontWeight: "normal",
-                              fontFamily: "Roboto",
-                            }}
-                          />
-                        </Pie>
-                      </PieChart>
-                    </div>
+                          value={skill.skilllevel.level} // ラベルの内容を表示する関数を設定
+                          position="center"
+                          fill="black"
+                          style={{
+                            fontSize: "12px",
+                            fontWeight: "normal",
+                            fontFamily: "Roboto",
+                          }}
+                        />
+                      </Pie>
+                    </PieChart>
+                  </div>
 
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ textAlign: "center" }}
-                    >
-                      {skill.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ textAlign: "center" }}
+                  >
+                    {skill.description}
+                  </Typography>
+                </CardContent>
+              </Card>
             ))
           ) : (
             <p>スキルは準備中です</p>
