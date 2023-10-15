@@ -53,7 +53,7 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
     try {
-        const user = yield prisma.user.findUnique({
+        const user = yield prisma.user.findMany({
             where: {
                 id: id,
             },
