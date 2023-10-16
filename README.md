@@ -90,12 +90,20 @@ TZ=Asia/Tokyo
 
 5. client ディレクトリの中の firebase ディレクトリの中の firebase.ts ファイルに apiKey などが`.env`ファイルで設定できるようになっています。client ディレクトリの直下に`.env`ファイルを作成して、先ほど作成した Firebase のプロジェクト設定から設定情報をコピーして`.env`ファイルに貼り付けてください。
 
-6. AWS で S3 のバケットを作成します。
+6. 5 で作成した`.env`ファイルの Firebase の設定情報の下に以下の内容を追記します。
 
-7. 4 で作成した Firebase プロジェクトの設定のサービスアカウントから秘密鍵を生成します。
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001
+API_URL_SSR=http://server:3001
+NEXT_PUBLIC_APP_SITE_URL=http://localhost:3000
+```
+
+7. AWS で S3 のバケットを作成します。
+
+8. 4 で作成した Firebase プロジェクトの設定のサービスアカウントから秘密鍵を生成します。
    秘密鍵を server ディレクトリの直下に置きます。（.gitignore にファイル名を追加してください。）
 
-8. server ディレクトリの直下に`.env`ファイルを作成します。
+9. server ディレクトリの直下に`.env`ファイルを作成します。
    DATABASE_URL のユーザー名とパスワードの部分は、先ほど MyPortfolio ディレクトリの直下に作成した`.env`ファイルのユーザー名とパスワードに修正します。
    AWS は アクセスキー、シークレットキー、リージョンとともに、6 で作成した AWS のバケット名を入れてください。
    GOOGLE_APPLICATION_CREDENTIALS には 7 で server ディレクトリの直下に置いた Firebase で作成した json ファイルの名前を入れます。
