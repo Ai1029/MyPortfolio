@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "prisma": {
-    "seed": "dotenv -e .env.production ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts",
+    "seed:production": "dotenv -e .env.production ts-node prisma/seed.ts"
   },
   "scripts": {
     "watch": "tsc-watch --onSuccess \"nodemon ./bin/www\"",
