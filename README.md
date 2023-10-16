@@ -70,35 +70,69 @@
 $ git clone https://github.com/Ai1029/MyPortfolio.git
 ```
 
-2. Go into the repository
+2. MyPortfolio に入ります
 
 ```bash
-$ cd myportfolio
+$ cd MyPortfolio
 ```
 
-3.　.env ファイルを作成
+3. MyPortfolio ディレクトリの直下に`.env` ファイルを作成
 
-4. Install dependencies
+```
+DB_ROOT_HOST=portfolio_db
+DB_NAME=portfolio
+DB_USER=（ユーザー名を入れてください）
+DB_PASS=（パスワードを入れてください）
+TZ=Asia/Tokyo
+```
+
+4. Firebase でプロジェクトを作成します。Firebase Authentication の認証機能を有効にします。メールとパスワードの認証を設定します。
+
+5. client ディレクトリの中の firebase ディレクトリの中の firebase.ts ファイルに apiKey などが`.env`ファイルで設定できるようになっています。client ディレクトリの直下に`.env`ファイルを作成して、先ほど作成した Firebase のプロジェクト設定から設定情報をコピーして`.env`ファイルに貼り付けてください。
+
+6. AWS で S3 のバケットを作成します。
+
+7. 4 で作成した Firebase プロジェクトの設定のサービスアカウントから秘密鍵を生成します。
+   秘密鍵を server ディレクトリの直下に置きます。（.gitignore にファイル名を追加してください。）
+
+8. server ディレクトリの直下に`.env`ファイルを作成します。
+   DATABASE_URL のユーザー名とパスワードの部分は、先ほど MyPortfolio ディレクトリの直下に作成した`.env`ファイルのユーザー名とパスワードに修正します。
+   AWS は アクセスキー、シークレットキー、リージョンとともに、6 で作成した AWS のバケット名を入れてください。
+   GOOGLE_APPLICATION_CREDENTIALS には 7 で server ディレクトリの直下に置いた Firebase で作成した json ファイルの名前を入れます。
+
+```
+DATABASE_URL="mysql://ユーザー名:パスワード@portfolio_db:3306/portfolio"
+
+AWS_ACCESS_KEY_ID=アクセスキー
+AWS_SECRET_ACCESS_KEY=シークレットキー
+AWS_REGION=リージョン
+AWS_BUCKET_NAME=バケット名
+
+export GOOGLE_APPLICATION_CREDENTIALS="/usr/src/server/7でserverディレクトリの直下に置いたFirebaseで作成したjsonファイル名
+```
+
+9. client ディレクトリと server ディレクトリで依存関係をインストールします
+
+```bash
+$ cd client
+$ npm install
+```
+
+```bash
+$ cd server
+$ npm install
+```
+
+10. 以下のコマンドで Docker のコンテナを立ち上げます
 
 ```bash
 $ docker compose up -d
 ```
 
-5. Install dependencies
-
-```bash
-$ npm install
-```
-
-6. Create database, Run migrations and set up the database
+11. 作成したデータベースに Prisma を使用してマイグレーションします。 さらに選択が必要なカテゴリーなどは seed ファイルでデータを入れ込みます。
 
 ```bash
 $ npx prisma migrate dev
-```
-
-7. カテゴリーなど select データをデータベースに入れる
-
-```bash
 $ npx prisma db seed
 ```
 
@@ -120,3 +154,7 @@ http://localhost:3000 をブラウザで開き、表示を確認します。
 
 - [ ] パスワード、email を変更したい場合には確認メールなどを送って二段階認証ができるようにしたい
 - [ ] firebase のエラーや database のエラーなどが起きた際に console ではなく、ユーザーがわかりやすいように表示したい
+
+```
+
+```
