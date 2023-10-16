@@ -47,7 +47,7 @@ const UserpageSns: FC = () => {
           justifyContent: "center", // カードを中央に配置
         }}
       >
-        {userSns ? (
+        {userSns && userSns.length > 0 ? (
           userSns.map((sns, index) => (
             <>
               <Link href={sns.url} variant="body2" underline="none">

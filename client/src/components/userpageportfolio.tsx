@@ -56,7 +56,7 @@ const UserpagePortfolio: FC = () => {
           justifyContent: "center", // カードを中央に配置
         }}
       >
-        {userPortfolio ? (
+        {userPortfolio && userPortfolio.length > 0 ? (
           userPortfolio.map((portfolio) => (
             <>
               <Card
