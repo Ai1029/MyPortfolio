@@ -8,7 +8,7 @@
 
 ※ API サーバを render でデプロイしているため立ち上げに時間がかかる可能性（5 〜20 分程度）があります。時間をおいて何度かページを更新してみてください。
 
-![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/desktop.png?raw=true)
+![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/desktop2.png?raw=true)
 <img src="https://github.com/Ai1029/MyPortfolio/blob/main/images/smartphone.png?raw=true" width="50%">
 
 - [MyPortfolio](#myportfolio)
