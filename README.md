@@ -25,21 +25,27 @@
 ## 機能・ページ遷移図
 
 自己紹介、スキル、ポートフォリオ、今までの経験（仕事と学び）、SNS のデータを作成、編集、閲覧、削除することができます。
-登録したユーザーは自分のポートフォリオページを作成して、編集、削除、閲覧ができます。登録していないユーザーは閲覧のみ可能です。
+
+登録したユーザーは自分のポートフォリオページを作成して、編集、削除、閲覧ができます。
+
+登録していないユーザーは閲覧のみ可能です。
 
 ![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/function.png?raw=true)
 
 ### 工夫した点
 
 項目が多くなると見づらくなる項目については表示の仕方を工夫しました。
+
 スキルはドーナツチャートで、経験は時間順に並び替えてタイムラインで表示できるようにしています。
+
 全体的に落ち着いた配色で、男女ともに使いやすく、ポートフォリオの画像が映えるよう工夫しました。
 
 ## 設計
 
 - [API 設計](https://github.com/Ai1029/MyPortfolio/blob/main/API.md)
 - ER 図
-  ![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/ER.png?raw=true)
+
+![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/ER.png?raw=true)
 
 ## 環境構成
 
