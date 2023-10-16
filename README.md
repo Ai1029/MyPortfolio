@@ -25,6 +25,9 @@
 ## 機能
 
 自己紹介、スキル、ポートフォリオ、今までの経験（仕事と学び）、SNS のデータを作成、編集、閲覧、削除することができます。
+登録したユーザーは自分のポートフォリオページを作成して、編集、削除、閲覧ができます。登録していないユーザーは閲覧のみ可能です。
+
+![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/function.png?raw=true)
 
 ### 工夫した点
 
@@ -33,6 +36,8 @@
 全体的に落ち着いた配色で、男女ともに使いやすく、ポートフォリオの画像が映えるよう工夫しました。
 
 ## 設計（ER 図、API 設計）
+
+![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/environment.png?raw=true)
 
 ## 環境構成
 
@@ -43,7 +48,7 @@
 | └ ORM        | Prisma                 |        |
 | フロント     | NEXT.js（TypeScript）  | 3000   |
 
-![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/desktop.png?raw=true)
+![image](https://github.com/Ai1029/MyPortfolio/blob/main/images/environment.png?raw=true)
 
 ## 環境構築
 
