@@ -136,6 +136,14 @@ $ npx prisma migrate dev
 $ npx prisma db seed
 ```
 
+12. server ディレクトリの bcrypt ライブラリ はコンテナ内で再インストール
+
+```bash
+$ docker compose exec -it server /bin/bash
+$ npm uninstall bcrypt
+$ npm install bcrypt
+```
+
 ## 確認方法
 
 http://localhost:3000 をブラウザで開き、表示を確認します。
@@ -154,3 +162,7 @@ http://localhost:3000 をブラウザで開き、表示を確認します。
 
 - [ ] パスワード、email を変更したい場合には確認メールなどを送って二段階認証ができるようにしたい
 - [ ] firebase のエラーや database のエラーなどが起きた際に console ではなく、ユーザーがわかりやすいように表示したい
+
+```
+
+```
