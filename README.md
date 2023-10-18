@@ -4,7 +4,7 @@
 
 ## MyPortfolio のスクリーンショット
 
-デプロイしたアプリを[Vercel](https://my-portfolio-psi-swart-91.vercel.app/userpage/7)で確認できます
+デプロイしたアプリを[Vercel](https://my-portfolio-psi-swart-91.vercel.app/userpage/6)で確認できます
 
 ※ API サーバを render でデプロイしているため立ち上げに時間がかかる可能性（5 〜20 分程度）があります。時間をおいて何度かページを更新してみてください。
 
